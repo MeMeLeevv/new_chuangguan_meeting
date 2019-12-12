@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* header变量集合 */
+/* 激活状态下的navbar里item的样式 */
+#header .navbarWrapper .navbar .activeNavbar {
+  border-bottom: 2px solid white;
+}
+
+#header {
+  min-width: 1350px;
+  height: 76px;
+  padding: 0 120px;
+  background: #17000C 100%;
+  color: white;
+}
+#header .logo {
+  width: 243px;
+  height: 40px;
+  transform: translateY(50%);
+  background: url(../img/1.jpg) no-repeat;
+  background-size: cover;
+}
+#header .navbarWrapper {
+  float: right;
+}
+#header .navbarWrapper .navbar {
+  display: inline-block;
+  line-height: 76px;
+}
+#header .navbarWrapper .navbar li {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 20px;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.25s;
+}
+#header .navbarWrapper .navbar li a {
+  height: 35px;
+}
+#header .navbarWrapper .navbar li:hover {
+  cursor: pointer;
+  border-bottom: 2px solid white;
+}
+#header .navbarWrapper .RegistrationBtn:hover {
+  cursor: pointer;
+}
+#header .navbarWrapper .RegistrationBtn {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  background: url(../img/a8563f87803853.5dc31e035b89b.jpg) no-repeat;
+  background-size: cover;
+}
+
+/*# sourceMappingURL=header.css.map */
