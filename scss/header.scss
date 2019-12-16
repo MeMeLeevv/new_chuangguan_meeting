@@ -14,14 +14,19 @@ $regisBtnHeight: 40px;
 $navbarHeight: 35px;
 
 /* 激活状态下的navbar里item的样式 */
-#header .navbarWrapper .navbar .activeNavbar {
+#header .navbarwrap .navbar .activeNavbar {
   border-bottom: 2px solid $fontColor;
 }
 
 #header {
   min-width: $headerMinWidth;
+  width: 100vw;
   height: $headerHeight;
+  position: fixed;
+  top: 0;
+  left:0;
   padding: 0 120px;
+  z-index: 1000;
   background: $headerBg;
   color: $fontColor;
   .logo {
@@ -31,7 +36,7 @@ $navbarHeight: 35px;
     background: url(../img/1.jpg) no-repeat;
     background-size: cover;
   }
-  .navbarWrapper {
+  .navbarwrap {
     float: right;
     .navbar {
       display: inline-block;

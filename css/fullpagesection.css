@@ -1,0 +1,106 @@
+.centerRelative {
+  position: relative;
+}
+
+.centerRelative .centerAbsolute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.cTitle {
+  margin-bottom: 60px;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.cTitleBg {
+  width: auto;
+  height: 34px;
+  margin-bottom: 60px;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.shadow {
+  transition: box-shadow 0.25s;
+}
+
+.shadow:hover {
+  box-shadow: 0px 2px 32px 0px rgba(0, 0, 0, 0.2);
+}
+
+#fullpage .section {
+  background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+#fullpage #background .centerAbsolute {
+  width: 1000px;
+}
+
+#fullpage #background .centerAbsolute .cDesc {
+  font-size: 18px;
+  line-height: 28px;
+  text-indent: 2rem;
+  letter-spacing: 2px;
+}
+
+#fullpage #hightlight .centerAbsolute {
+  width: 1200px;
+  padding: 0 50px;
+}
+
+#fullpage #hightlight .centerAbsolute .hLContent {
+  font-size: 0;
+}
+
+#fullpage #hightlight .centerAbsolute .hLContent .hLGroup {
+  width: 538px;
+  margin: 23px 0;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f) no-repeat;
+  background-size: cover;
+}
+
+#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap {
+  padding: 32px;
+  position: relative;
+}
+
+#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap .gTitle {
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  z-index: 10;
+  height: 36px;
+  padding: 0 12px;
+  line-height: 36px;
+  font-size: 18px;
+  font-weight: 700;
+  background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
+  background-size: cover;
+}
+
+#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap .desc {
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#fullpage #hightlight .centerAbsolute .hLContent .hLGroup:nth-child(even) {
+  margin-left: 22px;
+}
+
+/*# sourceMappingURL=fullpagesection.css.map */

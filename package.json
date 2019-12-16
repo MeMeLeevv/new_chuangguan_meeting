@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "browser-sync": "browser-sync start --server --files '**/*.css, **/*.html, **/*.js'",
+    "sass": "sass --watch scss:css"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/MeMeLeevv/new_chuangguan_meeting/issues"
   },
-  "homepage": "https://github.com/MeMeLeevv/new_chuangguan_meeting#readme"
+  "homepage": "https://github.com/MeMeLeevv/new_chuangguan_meeting#readme",
+  "dependencies": {
+    "fullpage.js": "^3.0.8"
+  }
 }

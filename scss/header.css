@@ -1,7 +1,6 @@
 #header .navbarwrap .navbar .activeNavbar {
   border-bottom: 2px solid #fff;
 }
-
 #header {
   min-width: 1350px;
   width: 100vw;
@@ -14,7 +13,6 @@
   background: #17000c 100%;
   color: #fff;
 }
-
 #header .logo {
   width: 243px;
   height: 40px;
@@ -22,16 +20,13 @@
   background: url(../img/1.jpg) no-repeat;
   background-size: cover;
 }
-
 #header .navbarwrap {
   float: right;
 }
-
 #header .navbarwrap .navbar {
   display: inline-block;
   line-height: 76px;
 }
-
 #header .navbarwrap .navbar li {
   display: inline-block;
   height: 35px;
@@ -40,20 +35,16 @@
   border-bottom: 2px solid transparent;
   transition: border-bottom 0.25s;
 }
-
 #header .navbarwrap .navbar li a {
   height: 35px;
 }
-
 #header .navbarwrap .navbar li:hover {
   cursor: pointer;
   border-bottom: 2px solid #fff;
 }
-
 #header .navbarwrap .RegistrationBtn:hover {
   cursor: pointer;
 }
-
 #header .navbarwrap .RegistrationBtn {
   width: 100px;
   height: 40px;
@@ -63,5 +54,3 @@
   background: url(../img/a8563f87803853.5dc31e035b89b.jpg) no-repeat;
   background-size: cover;
 }
-
-/*# sourceMappingURL=header.css.map */

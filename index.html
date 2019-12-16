@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>大会前端页面</title>
-  <link href="./css/normalize.css" rel="stylesheet" type="text/css"/>
-  <link href="./css/base.css" rel="stylesheet" type="text/css"/>
-  <link href="./css/header.css" rel="stylesheet" type="text/css"/>
-
-</head>
-<body>
-  <div id="header">
-    <span class="logo"></span>
-    <span class="navbarWrapper">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>大会前端页面</title>
+    <link href="./css/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="./css/base.css" rel="stylesheet" type="text/css" />
+    <link href="./css/header.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./css/fullpage.css" />
+    <link rel="stylesheet" href="./css/fullPageSection.css" />
+  </head>
+  <body>
+    <div id="header">
+      <span class="logo"></span>
+      <span class="navbarwrap">
         <ul class="navbar">
           <li><a href="/">首页</a></li>
           <li><a href="./guests.html">大会嘉宾</a></li>
@@ -23,11 +24,187 @@
           <li><a href="./review.html">往届回顾</a></li>
           <li><a href="./consult.html">大会咨询</a></li>
         </ul>
-        <span class="RegistrationBtn">参会报名</span><!-- 注意保底措施 -->
+        <span class="RegistrationBtn">参会报名</span
+        ><!-- 注意保底措施，加载图片失败则color补充 -->
       </span>
-  </div>
+    </div>
+    <div id="fullpage">
+      <!-- 
+        headImage
+        background
+        highlight
+        scale
+        excellenceAward
+        guests
+        agenda
+        news
+        registration
+        partners
+        cooperativeMedia
+        address 
+        contact
+        首先加载页面的时候先加载栏目列表，并初始化section的个数，绑定每个栏目的id和type，以便每屏加载的时候去请求数据
+        sectio默认是用全局bg，但是也要预留单独可设背景
+      每屏数据不同，动态加载数据以及html模块，懒加载?每屏加载都要请求一次数据
+      1、每屏背景——有则加载，没有则默认全局背景
+        type=0 主视觉
+      -->
+      <div
+        class="section centerRelative"
+        id="headImage"
+        data-cid=""
+        data-type=""
+        title="主视觉 —— 只有一张栏目背景图"
+      >
+        <img
+          class="cBg centerAbsolute"
+          src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+          alt=""
+        />
+      </div>
+      <div
+        class="section centerRelative"
+        id="background"
+        data-cid=""
+        data-type=""
+        title="大会背景 —— title文字/titleBg、栏目descrition文字"
+      >
+        <div class="centerAbsolute">
+           <div class="cTitle">大会背景</div>
+         <!--  <div class="textCenter">
+            <img
+              src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+              alt=""
+              class="cTitleBg"
+            />
+          </div> -->
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/header.js"></script>
-</body>
+          <div class="cDesc">
+            2019年，是中国新时代的科技元年，中国科技创新成为推动经济社会高质量高效益发展的精神富矿。5G是推
+            动全球数字经济发展的重要引擎，中国5G通信将迎来开局之年，关键核心技术创新能力迈入世界前列。5G时代将
+            开启新科技时代，赋能经济新动能，赋予垂直行业深度融合，支撑置换社会创新发展，为行业升级注入强劲动力。
+            同时粤港澳大湾区在科技与金融合作领域始终具有引领世界的潜力，以科技推动金融进步，以金融助力科技发展。
+            科技孕育无限生机，激发未来无限可能，是创新发展的先导力量，将重塑全球经济结构，加速新旧动能转换，催生
+            新消费、新业态、新模式。
+          </div>
+          <br />
+          <div class="cDesc">
+            由广东省互联网协会、广东省科技金融促进会、艾媒咨询举办的2019全球未来科技大会(广
+            州站)，将于2019年10月31日-11月1日在中国广州举办，涵盖5G商业应用，粤港澳大湾区科技与金融融合、未来新经济、新
+            领域、新消费、数字文娱、智慧网联等科技领域核心内容，面向全球科技产业及上下游企业，旨在精准把握行业风
+            云激荡的发展方向与未来趋势。
+          </div>
+        </div>
+      </div>
+      <div
+        class="section centerRelative"
+        id="hightlight"
+        data-cid=""
+        data-type=""
+        title="大会亮点 —— title文字/titleBg、分组（title、titleBg、desc、groupBg）"
+      >
+        <div class="centerAbsolute">
+           <div class="cTitle">大会亮点</div>
+          <!-- <div class="textCenter">
+            <img
+              src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+              alt=""
+              class="cTitleBg"
+            />
+          </div> -->
+          <div class="hLContent">
+            <div class="hLGroup">
+              <div class="wrap">
+                <div class="gTitle">5G引爆科技前沿</div>
+                <div class="desc">
+                  未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。
+                </div>
+              </div>
+            </div>
+            <div class="hLGroup">
+              <div class="wrap">
+                <div class="gTitle">5G引爆科技前沿</div>
+                <div class="desc">
+                  未来G时代引领科技前沿，激发新时代。
+                </div>
+              </div>
+            </div>
+            <div class="hLGroup">
+              <div class="wrap">
+                <div class="gTitle">5G引爆科技前沿</div>
+                <div class="desc">
+                  未来G时代引领科技前沿，激发新时代。
+                </div>
+              </div>
+            </div>
+            <div class="hLGroup">
+              <div class="wrap">
+                <div class="gTitle">5G引爆科技前沿</div>
+                <div class="desc">
+                  未来G时代引领科技前沿，激发新时代。
+                </div>
+              </div>
+            </div>
+            <div class="hLGroup">
+              <div class="wrap">
+                <div class="gTitle">5G引爆科技前沿</div>
+                <div class="desc">
+                  未来G时代引领科技前沿，激发新时代。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="section centerRelative"
+        id="scale"
+        data-cid=""
+        data-type=""
+        title="大会规模 —— title文字/titleBg、栏目背景图"
+      >
+        <div class="centerAbsolute">
+           <div class="cTitle">大会规模</div>
+          <!-- <div class="cTitleBg textCenter">
+            <img
+              src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+              alt=""
+              class="cTitleBg"
+            />
+          </div> -->
+          <img
+            class="cBg shadow"
+            src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+            alt=""
+          />
+        </div>
+      </div>
+      <div
+        class="section centerRelative"
+        id="guests"
+        data-cid=""
+        data-type=""
+        title="大会嘉宾 —— title文字/titleBg、group（name、desc、mainImg、hbgColor）"
+      >
+        <div class="centerAbsolute">
+           <div class="cTitle">大会嘉宾</div>
+          <!-- <div class="cTitleBg textCenter">
+            <img
+              src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+              alt=""
+              class="cTitleBg"
+            />
+          </div> -->
+          <div class="gContent">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/fullpage.js"></script>
+    <script src="js/fullPageSection.js"></script>
+    <!-- 大会咨询插件： http://www.jq22.com/yanshi21621 -->
+  </body>
 </html>

@@ -1,0 +1,103 @@
+
+$backgroundWidth: 1000px;
+$hightlightWidth: 1200px;
+$titleMargin: 60px;
+$titleBgHeight: 34px;
+$hLGroupWidth: 538px;
+$hLgTitleHeight: 36px;
+
+/* 使用relative和absolute实现水平垂直居中 */
+.centerRelative {
+  position: relative;
+  .centerAbsolute {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+  }
+}
+/* 大会栏目title文字样式 */
+.cTitle {
+  margin-bottom: $titleMargin;
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+}
+/* 大会栏目title背景图片样式 */
+.cTitleBg {
+  width: auto;
+  height: $titleBgHeight;
+  margin-bottom: $titleMargin;
+}
+
+.textCenter {
+  text-align: center;
+}
+.shadow {
+  transition: box-shadow 0.25s;
+}
+.shadow:hover {
+  box-shadow: 0px 2px 32px 0px rgba(0,0,0,0.2);
+}
+
+#fullpage {
+  .section {
+    background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
+    background-size: cover;
+    color: white;
+    /* 大会头图样式 */
+  }
+  #background .centerAbsolute{
+    width: $backgroundWidth;
+    .cDesc {
+      font-size: 18px;
+      line-height: 28px;
+      text-indent: 2rem; // 缩进
+      letter-spacing: 2px;
+    }
+  }
+  #hightlight .centerAbsolute {
+    width: $hightlightWidth;
+    padding: 0 50px;
+    .hLContent {
+      font-size: 0;
+      .hLGroup {
+        width: $hLGroupWidth;
+        margin: 23px 0;
+        display: inline-block;
+        vertical-align: middle;
+        background: url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f) no-repeat;
+        background-size: cover;
+        .wrap {
+          padding: 32px;
+          position: relative;
+          .gTitle {
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            z-index: 10;
+            height: $hLgTitleHeight;
+            padding: 0 12px;
+            line-height: $hLgTitleHeight;
+            font-size: 18px;
+            font-weight: 700;
+            background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
+            background-size: cover;
+          }
+          .desc {
+            font-size: 16px;
+            letter-spacing: 1px;
+          }
+        }
+        .wrap:hover {
+          cursor: pointer;
+          background: rgba($color: black, $alpha: .1);
+        }
+      }
+      .hLGroup:nth-child(even) {
+        margin-left: 22px;
+      }
+    }
+  }
+}
