@@ -1,103 +1,106 @@
-
-$backgroundWidth: 1000px;
-$hightlightWidth: 1200px;
-$titleMargin: 60px;
-$titleBgHeight: 34px;
-$hLGroupWidth: 538px;
-$hLgTitleHeight: 36px;
-
+$backgroundWidth:1000px; $hightlightWidth:1200px; $titleMargin:60px; $titleBgHeight:34px; $hLGroupWidth:538px; $hLgTitleHeight:36px; $gWidth:1200px; $gHeight:540px; $ggWidth:220px; $ggHeight:256px; $gAvatarSize:130px; $gDescWidth:164px; $gArrowcolor:#3a3a3a; $gArrowHoverC:#e86feb; $aWidth:1100px; $aPicWidth:500px; $nWidth:1200px; $nHeight:558px; $nItemWidth:538px; $nItemHeight:170px; $nItemPicW:165px; $nItemWordsW:309px;
+$rCBdwidth:480px;
+/* 多行省略函数 */
+@mixin ellipsis($line) { display:-webkit-box; overflow:hidden;  -webkit-box-orient:vertical; text-overflow:ellipsis;  -webkit-line-clamp:$line;
+}
 /* 使用relative和absolute实现水平垂直居中 */
-.centerRelative {
-  position: relative;
-  .centerAbsolute {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-  }
+.centerRelative { position:relative;
+    .centerAbsolute { position:absolute; text-align:center;top:50%; left:50%; -webkit-transform:translate(-50%, -50%);transform:translate(-50%, -50%);
+    }
 }
 /* 大会栏目title文字样式 */
-.cTitle {
-  margin-bottom: $titleMargin;
-  text-align: center;
-  font-size: 34px;
-  font-weight: 700;
+.cTitle { margin:0 0 $titleMargin 0;font-size:34px;font-weight:700;
 }
 /* 大会栏目title背景图片样式 */
-.cTitleBg {
-  width: auto;
-  height: $titleBgHeight;
-  margin-bottom: $titleMargin;
+.cTitleBg { margin:0 0 $titleMargin 0;width:auto; height:$titleBgHeight;
 }
-
-.textCenter {
-  text-align: center;
+.textCenter { text-align:center;
 }
-.shadow {
-  transition: box-shadow 0.25s;
+.shadow { transition:box-shadow .25s;
 }
-.shadow:hover {
-  box-shadow: 0px 2px 32px 0px rgba(0,0,0,0.2);
+.shadow:hover { box-shadow:0 2px 32px 0 rgba(0, 0, 0, .2);cursor:pointer;
 }
-
-#fullpage {
-  .section {
-    background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
-    background-size: cover;
-    color: white;
-    /* 大会头图样式 */
-  }
-  #background .centerAbsolute{
-    width: $backgroundWidth;
-    .cDesc {
-      font-size: 18px;
-      line-height: 28px;
-      text-indent: 2rem; // 缩进
-      letter-spacing: 2px;
+#fullpage { .section { background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8)
+        no-repeat;  background-size:cover; color:white;
+        /* 大会头图样式 */
     }
-  }
-  #hightlight .centerAbsolute {
-    width: $hightlightWidth;
-    padding: 0 50px;
-    .hLContent {
-      font-size: 0;
-      .hLGroup {
-        width: $hLGroupWidth;
-        margin: 23px 0;
-        display: inline-block;
-        vertical-align: middle;
-        background: url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f) no-repeat;
-        background-size: cover;
-        .wrap {
-          padding: 32px;
-          position: relative;
-          .gTitle {
-            position: absolute;
-            top: -20px;
-            left: 10px;
-            z-index: 10;
-            height: $hLgTitleHeight;
-            padding: 0 12px;
-            line-height: $hLgTitleHeight;
-            font-size: 18px;
-            font-weight: 700;
-            background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
-            background-size: cover;
-          }
-          .desc {
-            font-size: 16px;
-            letter-spacing: 1px;
-          }
+    #background .centerAbsolute { width:$backgroundWidth;
+        .cDesc { font-size:18px;  line-height:28px;text-indent:2rem; // 缩进  letter-spacing: 2px;  
         }
-        .wrap:hover {
-          cursor: pointer;
-          background: rgba($color: black, $alpha: .1);
-        }
-      }
-      .hLGroup:nth-child(even) {
-        margin-left: 22px;
-      }
     }
-  }
+    #hightlight .centerAbsolute { padding:0 50px;  width:$hightlightWidth;
+        .hLContent { font-size:0;
+            .hLGroup { display:inline-block; margin:23px 0;  width:$hLGroupWidth; background:url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f)
+                no-repeat; background-size:cover;vertical-align:middle;
+                .wrap { position:relative; padding:32px;transition:background-color .25s;
+                    .gTitle { position:absolute; padding:0 12px;  height:$hLgTitleHeight;font-size:18px; line-height:$hLgTitleHeight;  background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8)
+                        no-repeat;background-size:cover;font-weight:700; z-index:10;top:-20px; left:10px;
+                    }
+                    .desc { font-size:16px;  letter-spacing:1px;
+                    }
+                }
+                .wrap:hover { background:rgba($color:black, $alpha:.1);cursor:pointer;
+                }
+            }
+            .hLGroup:nth-child(even) { margin:0 0 0 22px;
+            }
+        }
+    }
+    #guests .centerAbsolute { .csslider > ul { width:$gWidth; height:$gHeight;  font-size:0;
+            .gGroup { display:inline-block;  width:$ggWidth; height:$ggHeight; font-size:16px;transition:background-color .35s;
+                .gAvatar { border:1px solid #e86feb;width:$gAvatarSize; height:$gAvatarSize; transition:transform .35s;  transform:rotate(0deg); border-radius:50%;
+                }
+                .gname { margin:20px 0 10px 0;font-weight:700;
+                }
+                .gdesc { width:$gDescWidth;font-size:14px;color:rgba($color:white, $alpha:.8);
+                }
+            }
+            .gGroup:hover { background:#e86feb;  cursor:pointer;
+                .gdesc { width:$gDescWidth;font-size:14px;color:white;
+                }
+            }
+        }
+        .csslider > .arrows label { box-shadow:inset 2px -2px 0 1px $gArrowcolor;
+        }
+        .csslider > .arrows label:hover { box-shadow:inset 3px -3px 0 2px $gArrowHoverC;
+        }
+        .csslider > .navigation label { background:$gArrowcolor;
+        }
+        .csslider > .navigation label:after { background:$gArrowHoverC;
+        }
+    }
+    #agenda .centerAbsolute { width:$aWidth;  font-size:0;
+        .aGroup { display:inline-block; margin:0 0 20px 0; vertical-align:middle;
+            .aItem { border-radius:10px;
+                .aPic { width:$aPicWidth; height:auto;
+                }
+            }
+        }
+        .aGroup:nth-child(odd) { margin:0 0 20px 20px;
+        }
+    }
+    #news .centerAbsolute { width:$nWidth;
+        .nWrap { overflow:auto;max-height:$nHeight;
+            .nItem { border:1px solid rgba(255,255,255, .1);  margin:0 0 24px 0; padding:24px;  width:$nItemWidth; height:$nItemHeight; transition:background-color .25s;
+                .mainImg { width:$nItemPicW; height:auto; vertical-align:top;
+                }
+                .words { width:$nItemWordsW;
+                    .title { margin:0 0 5px 0;font-size:16px;  line-height:22px;font-weight:700;@include ellipsis(2);
+                    }
+                    .desc { font-size:14px;  line-height:20px;  color:lightgray;@include ellipsis(3);
+                    }
+                }
+            }
+            .nItem:nth-child(even) { margin:0 0 0 30px;
+            }
+            .nItem:hover { background:rgba(255,255,255, .1);cursor:pointer;
+            }
+        }
+    }
+    #registration .centerAbsolute { width:$nWidth;
+        .rCBg { margin:0 0 33px 0;width:$rCBdwidth;height:auto;
+        }
+        .rCBg:nth-child(odd) { margin:0 0 33px 32px;
+        }
+    }
 }

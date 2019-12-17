@@ -1,73 +1,23 @@
 /* header变量集合 */
-$headerMinWidth: 1350px;
-$headerBg: #17000C 100%;
-$headerHeight: 76px;
-$title-font: normal 24px/1.5 'Open Sans', sans-serif;
-$fontColor:white;
-$fontSmallSize: 18px;
-$fontMediumSize: 22px;
-$fontBigSize: 34px;
-$logoWidth: 243px;
-$logoHeight:40px;
-$regisBtnWidth:100px;
-$regisBtnHeight: 40px;
-$navbarHeight: 35px;
-
+$headerMinWidth:1350px; $headerBg:#17000c 100%; $headerHeight:76px; $title-font:normal 24px/1.5 'Open Sans', sans-serif; $fontColor:white; $fontSmallSize:18px; $fontMediumSize:22px; $fontBigSize:34px; $logoWidth:243px; $logoHeight:40px; $regisBtnWidth:100px; $regisBtnHeight:40px; $navbarHeight:35px;
 /* 激活状态下的navbar里item的样式 */
-#header .navbarwrap .navbar .activeNavbar {
-  border-bottom: 2px solid $fontColor;
+#header .navbarwrap .navbar .activeNavbar { border-bottom:2px solid $fontColor;
 }
-
-#header {
-  min-width: $headerMinWidth;
-  width: 100vw;
-  height: $headerHeight;
-  position: fixed;
-  top: 0;
-  left:0;
-  padding: 0 120px;
-  z-index: 1000;
-  background: $headerBg;
-  color: $fontColor;
-  .logo {
-    width: $logoWidth;
-    height: $logoHeight;
-    transform: translateY(50%);
-    background: url(../img/1.jpg) no-repeat;
-    background-size: cover;
-  }
-  .navbarwrap {
-    float: right;
-    .navbar {
-      display: inline-block;
-      line-height: $headerHeight;
-      li {
-        display: inline-block;
-        height: $navbarHeight;
-        line-height: $navbarHeight;
-        margin: 0 20px;
-        border-bottom: 2px solid transparent;
-        transition: border-bottom .25s;
-        a {
-          height: $navbarHeight;
+#header { position:fixed;  padding:0 120px; width:100vw; height:$headerHeight; background:$headerBg;color:$fontColor; z-index:1000; top:0; left:0; min-width:$headerMinWidth;
+    .logo { width:$logoWidth; height:$logoHeight; background:url(../img/1.jpg) no-repeat; background-size:cover;transform:translateY(50%);
+    }
+    .navbarwrap { float:right;
+        .navbar { display:inline-block;  line-height:$headerHeight;
+            li { display:inline-block; margin:0 20px;  height:$navbarHeight;  line-height:$navbarHeight;  transition:border-bottom .25s; border-bottom:2px solid transparent;
+                a { height:$navbarHeight;
+                }
+            }
+            li:hover { cursor:pointer;  border-bottom:2px solid $fontColor;
+            }
         }
-      }
-      li:hover{
-        cursor: pointer;
-        border-bottom: 2px solid $fontColor;
-      }
+        .RegistrationBtn:hover { cursor:pointer;
+        }
+        .RegistrationBtn { width:$regisBtnWidth; height:$regisBtnHeight;line-height:$regisBtnHeight;  text-align:center;background:url(../img/a8563f87803853.5dc31e035b89b.jpg) no-repeat;background-size:cover;border-radius:5px;
+        }
     }
-    .RegistrationBtn:hover{
-      cursor: pointer;
-    }
-    .RegistrationBtn{ 
-      width: $regisBtnWidth;
-      height: $regisBtnHeight;
-      text-align: center;
-      line-height: $regisBtnHeight;
-      border-radius: 5px;
-      background: url(../img/a8563f87803853.5dc31e035b89b.jpg) no-repeat;
-      background-size: cover;
-    }
-  }
 }

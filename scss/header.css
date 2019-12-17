@@ -2,23 +2,23 @@
   border-bottom: 2px solid #fff;
 }
 #header {
-  min-width: 1350px;
+  position: fixed;
+  padding: 0 120px;
   width: 100vw;
   height: 76px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0 120px;
-  z-index: 1000;
   background: #17000c 100%;
   color: #fff;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  min-width: 1350px;
 }
 #header .logo {
   width: 243px;
   height: 40px;
-  transform: translateY(50%);
   background: url(../img/1.jpg) no-repeat;
   background-size: cover;
+  transform: translateY(50%);
 }
 #header .navbarwrap {
   float: right;
@@ -29,11 +29,11 @@
 }
 #header .navbarwrap .navbar li {
   display: inline-block;
+  margin: 0 20px;
   height: 35px;
   line-height: 35px;
-  margin: 0 20px;
-  border-bottom: 2px solid transparent;
   transition: border-bottom 0.25s;
+  border-bottom: 2px solid transparent;
 }
 #header .navbarwrap .navbar li a {
   height: 35px;
@@ -48,9 +48,9 @@
 #header .navbarwrap .RegistrationBtn {
   width: 100px;
   height: 40px;
-  text-align: center;
   line-height: 40px;
-  border-radius: 5px;
+  text-align: center;
   background: url(../img/a8563f87803853.5dc31e035b89b.jpg) no-repeat;
   background-size: cover;
+  border-radius: 5px;
 }
