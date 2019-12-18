@@ -20,6 +20,7 @@
   height: 40px;
   background: url(../img/1.jpg) no-repeat;
   background-size: cover;
+  -webkit-transform: translateY(50%);
   transform: translateY(50%);
 }
 
@@ -37,6 +38,7 @@
   margin: 0 20px;
   height: 35px;
   line-height: 35px;
+  -webkit-transition: border-bottom 0.25s;
   transition: border-bottom 0.25s;
   border-bottom: 2px solid transparent;
 }
