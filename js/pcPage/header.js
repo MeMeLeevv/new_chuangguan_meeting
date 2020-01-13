@@ -1,10 +1,8 @@
 ;(function ($, win, doc) {
   var navbar = {
     data: {
-      logoUrl: 'http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f', // 大会logo地址
-      RegistrationBtnUrl: 'http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8',//报名按钮背景地址
-
-      indexUrl: '/',
+      // 导航栏的每栏url，用于监测当前的网页地址是属于哪一栏
+      indexUrl: '/new_chuangguan_meeting/index.html',
       guestUrl:'',
       meetingUrl: '',
       awardUrl: '',
@@ -12,20 +10,35 @@
       reviewUrl: '',
       consultUrl: '',
 
-      activeClass: 'activeNavbar',
+      logoClass: '#header .logo',
+      regisBtnClass: '#header .navbarwrap .RegistrationBtn',
+      activeNavClass: 'activeNavbar',
       navbarItemClass: '#header .navbarwrap .navbar li a'
 
     },
+    /* 
+    首页导航栏初始化：获取logo图和小图并相应修改页面css
+    */
     init: function (params) {
       navbar.activeNav()
+      console.log(win.project_base_msg, 'win.project_base_msg.logo_img')
+
+      if (project_base_msg.logo_img) {
+        $(navbar.data.logoClass).css('background-image', `url(${project_base_msg.logo_img})`)
+        $(navbar.data.regisBtnClass).css('background-image', `url(${project_base_msg.small_picture_img})`)
+      }
+
     },
-    /* 高亮当前链接下的导航栏li */
+    /* 
+    高亮当前链接下的导航栏li
+    */
     activeNav: function () {
       var data = navbar.data
       var activePath = navbar.getPositionUrl() // href获取到的路径是"http://localhost:3000/"这种绝对路径，所以这里采用获取网页地址的绝对路径
+      // console.log(activePath, 'path')
       $(data.navbarItemClass).each(function (index,item) {
-        // console.log(item.href)
-        item.href === activePath ? $(this).addClass(data.activeClass) : $(this).removeClass(data.activeClass)
+        // console.log(item.href, 'innerHref')
+        item.href === activePath ? $(this).addClass(data.activeNavClass) : $(this).removeClass(data.activeNavClass)
       })
     },
     /* 获取当前网页的相对路径 */

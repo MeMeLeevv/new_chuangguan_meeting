@@ -1,3 +1,6 @@
+@charset "UTF-8";
+/* 多行省略函数 */
+/* 使用relative和absolute实现水平垂直居中 */
 .centerRelative {
   position: relative;
 }
@@ -9,38 +12,48 @@
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+/* 大会栏目title文字样式 */
 .cTitle {
   margin: 0 0 60px 0;
   font-size: 34px;
   font-weight: 700;
 }
+
+/* 大会栏目title背景图片样式 */
 .cTitleBg {
   width: auto;
   height: 34px;
   margin: 0 0 60px 0;
 }
+
 .textCenter {
   text-align: center;
 }
+
+/* 合作伙伴title的文字对齐组title */
 .paddingMore {
   padding-right: 30px;
 }
+
 .shadow {
   -webkit-transition: -webkit-box-shadow 0.25s;
   transition: -webkit-box-shadow 0.25s;
   transition: box-shadow 0.25s;
   transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
 }
+
 .shadow:hover {
   cursor: pointer;
   -webkit-box-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.2);
 }
+
 #fullpage .section {
   color: white;
-  background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8)
-    no-repeat;
+  background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
   background-size: cover;
+  /* 大会头图样式 */
 }
 #fullpage #background .centerAbsolute {
   width: 1000px;
@@ -48,31 +61,32 @@
 #fullpage #background .centerAbsolute .cDesc {
   font-size: 18px;
   line-height: 28px;
+  text-align: left;
   text-indent: 2rem;
+  letter-spacing: 2px;
 }
-#fullpage #hightlight .centerAbsolute {
+#fullpage #highlight .centerAbsolute {
   width: 1200px;
   padding: 0 50px;
 }
-#fullpage #hightlight .centerAbsolute .hLContent {
+#fullpage #highlight .centerAbsolute .hLContent {
   font-size: 0;
 }
-#fullpage #hightlight .centerAbsolute .hLContent .hLGroup {
+#fullpage #highlight .centerAbsolute .hLContent .hLGroup {
   display: inline-block;
   width: 538px;
   margin: 23px 0;
   vertical-align: middle;
-  background: url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f)
-    no-repeat;
+  background: url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f) no-repeat;
   background-size: cover;
 }
-#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap {
+#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap {
   position: relative;
   padding: 32px;
   -webkit-transition: background-color 0.25s;
   transition: background-color 0.25s;
 }
-#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap .gTitle {
+#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap .gTitle {
   position: absolute;
   top: -20px;
   left: 10px;
@@ -82,19 +96,18 @@
   font-size: 18px;
   line-height: 36px;
   font-weight: 700;
-  background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8)
-    no-repeat;
+  background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
   background-size: cover;
 }
-#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap .desc {
+#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap .desc {
   font-size: 16px;
   letter-spacing: 1px;
 }
-#fullpage #hightlight .centerAbsolute .hLContent .hLGroup .wrap:hover {
+#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap:hover {
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-#fullpage #hightlight .centerAbsolute .hLContent .hLGroup:nth-child(even) {
+#fullpage #highlight .centerAbsolute .hLContent .hLGroup:nth-child(even) {
   margin: 0 0 0 22px;
 }
 #fullpage #guests .centerAbsolute .csslider > ul {
@@ -128,8 +141,7 @@
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .front,
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .back {
+#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .front, #fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .back {
   position: absolute;
   top: 0;
   left: 0;
@@ -146,15 +158,7 @@
   -webkit-transition: background-color 0.35s;
   transition: background-color 0.35s;
 }
-#fullpage
-  #guests
-  .centerAbsolute
-  .csslider
-  > ul
-  .flipWrap
-  .flip
-  .gGroup
-  .gAvatar {
+#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gAvatar {
   width: 130px;
   height: 130px;
   border: 1px solid #e86feb;
@@ -164,27 +168,11 @@
   transition: transform 0.35s, -webkit-transform 0.35s;
   border-radius: 50%;
 }
-#fullpage
-  #guests
-  .centerAbsolute
-  .csslider
-  > ul
-  .flipWrap
-  .flip
-  .gGroup
-  .gname {
+#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gname {
   margin: 20px 0 10px 0;
   font-weight: 700;
 }
-#fullpage
-  #guests
-  .centerAbsolute
-  .csslider
-  > ul
-  .flipWrap
-  .flip
-  .gGroup
-  .gdesc {
+#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gdesc {
   width: 164px;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
@@ -199,15 +187,7 @@
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-#fullpage
-  #guests
-  .centerAbsolute
-  .csslider
-  > ul
-  .flipWrap:hover
-  .flip
-  .gGroup
-  .gdesc {
+#fullpage #guests .centerAbsolute .csslider > ul .flipWrap:hover .flip .gGroup .gdesc {
   width: 164px;
   font-size: 14px;
   color: white;
@@ -271,25 +251,25 @@
   width: 309px;
 }
 #fullpage #news .centerAbsolute .nWrap .nItem .words .title {
-  margin: 0 0 5px 0;
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 700;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
 }
 #fullpage #news .centerAbsolute .nWrap .nItem .words .desc {
-  font-size: 14px;
-  line-height: 20px;
-  color: lightgray;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
+  font-size: 14px;
+  line-height: 20px;
+  color: lightgray;
 }
 #fullpage #news .centerAbsolute .nWrap .nItem:nth-child(even) {
   margin: 0 0 0 30px;
@@ -334,10 +314,12 @@
 #fullpage #contact .centerAbsolute .cGroup .cItem {
   width: 350px;
   height: 200px;
-  transition: background-color 0.25s;
   margin: 12px;
+  transition: background-color 0.25s;
 }
 #fullpage #contact .centerAbsolute .cGroup .cItem:hover {
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
+
+/*# sourceMappingURL=fullpageSection.css.map */

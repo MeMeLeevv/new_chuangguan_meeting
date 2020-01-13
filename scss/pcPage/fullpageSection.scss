@@ -1,4 +1,4 @@
-$backgroundWidth:1000px; $hightlightWidth:1200px; $titleMargin:60px; $titleBgHeight:34px; $hLGroupWidth:538px; $hLgTitleHeight:36px; $gWidth:1200px; $gHeight:540px; $ggWidth:220px; $ggHeight:256px; $gAvatarSize:130px; $gDescWidth:164px; $gArrowcolor:#3a3a3a; $gArrowHoverC:#e86feb; $aWidth:1100px; $aPicWidth:500px; $nWidth:1200px; $nHeight:558px; $nItemWidth:538px; $nItemHeight:170px; $nItemPicW:165px; $nItemWordsW:309px;
+$backgroundWidth:1000px; $highlightWidth:1200px; $titleMargin:60px; $titleBgHeight:34px; $hLGroupWidth:538px; $hLgTitleHeight:36px; $gWidth:1200px; $gHeight:540px; $ggWidth:220px; $ggHeight:256px; $gAvatarSize:130px; $gDescWidth:164px; $gArrowcolor:#3a3a3a; $gArrowHoverC:#e86feb; $aWidth:1100px; $aPicWidth:500px; $nWidth:1200px; $nHeight:558px; $nItemWidth:538px; $nItemHeight:170px; $nItemPicW:165px; $nItemWordsW:309px;
 $rCBdwidth:480px;$pHeight:550px;$pItemW:175px;$pItemH:70px;$cGItemW:350px;$cGItemH:200px;
 /* 多行省略函数 */
 @mixin ellipsis($line) { display:-webkit-box; overflow:hidden;  -webkit-box-orient:vertical; text-overflow:ellipsis;  -webkit-line-clamp:$line;
@@ -21,26 +21,23 @@ $rCBdwidth:480px;$pHeight:550px;$pItemW:175px;$pItemH:70px;$cGItemW:350px;$cGIte
 }
 .shadow { -webkit-transition:-webkit-box-shadow 0.25s; transition:-webkit-box-shadow 0.25s; transition:box-shadow 0.25s; transition:box-shadow 0.25s, -webkit-box-shadow 0.25s;
 }
-.shadow:hover { cursor:pointer;
-
--webkit-box-shadow:0 2px 32px 0 rgba(0, 0, 0, 0.2); box-shadow:0 2px 32px 0 rgba(0, 0, 0, 0.2);
+.shadow:hover { cursor:pointer;-webkit-box-shadow:0 2px 32px 0 rgba(0, 0, 0, 0.2); box-shadow:0 2px 32px 0 rgba(0, 0, 0, 0.2);
 }
-#fullpage { .section { color:white;  background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8)
-    no-repeat;  background-size:cover;
+#fullpage { .section { color:white;  background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;  background-size:cover;
     /* 大会头图样式 */
   }
   #background .centerAbsolute { width:$backgroundWidth;
-    .cDesc { font-size:18px;  line-height:28px;text-indent:2rem; // 缩进  letter-spacing: 2px;  
+    .cDesc { font-size:18px;  line-height:28px;text-align:left;text-indent:2rem;
+
+letter-spacing:2px;
     }
   }
-  #hightlight .centerAbsolute { width:$hightlightWidth; padding:0 50px;
+  #highlight .centerAbsolute { width:$highlightWidth; padding:0 50px;
     .hLContent { font-size:0;
       .hLGroup { display:inline-block; width:$hLGroupWidth; margin:23px 0;  vertical-align:middle;background:url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f)
         no-repeat; background-size:cover;
         .wrap { position:relative; padding:32px;-webkit-transition:background-color 0.25s;transition:background-color 0.25s;
-          .gTitle { position:absolute; top:-20px; left:10px;
-
-z-index:10;height:$hLgTitleHeight;padding:0 12px;  font-size:18px; line-height:$hLgTitleHeight;  font-weight:700; background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8)
+          .gTitle { position:absolute; top:-20px; left:10px;z-index:10;height:$hLgTitleHeight;padding:0 12px;  font-size:18px; line-height:$hLgTitleHeight;  font-weight:700; background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8)
             no-repeat;background-size:cover;
           }
           .desc { font-size:16px;  letter-spacing:1px;
@@ -99,13 +96,13 @@ z-index:10;height:$hLgTitleHeight;padding:0 12px;  font-size:18px; line-height:$
   }
   #news .centerAbsolute { width:$nWidth;
     .nWrap { max-height:$nHeight; overflow:auto;
-      .nItem { width:$nItemWidth; height:$nItemHeight; margin:0 0 24px 0; padding:24px;   border:1px solid rgba(255,255,255, 0.1);  -webkit-transition:background-color 0.25s;          transition:background-color 0.25s;
+      .nItem { width:$nItemWidth; height:$nItemHeight; margin:0 0 24px 0; padding:24px; border:1px solid rgba(255,255,255, 0.1);  -webkit-transition:background-color 0.25s;          transition:background-color 0.25s;
         .mainImg { width:$nItemPicW; height:auto; vertical-align:top;
         }
         .words { width:$nItemWordsW;
-          .title { margin:0 0 5px 0;font-size:16px;  line-height:22px;font-weight:700;@include ellipsis(2);
+          .title { @include ellipsis(2);margin:0 0 5px 0;font-size:16px;  line-height:22px;font-weight:700;
           }
-          .desc { font-size:14px;  line-height:20px;  color:lightgray;@include ellipsis(3);
+          .desc { @include ellipsis(3);font-size:14px;  line-height:20px;  color:lightgray;
           }
         }
       }
@@ -133,9 +130,9 @@ z-index:10;height:$hLgTitleHeight;padding:0 12px;  font-size:18px; line-height:$
     }
   }
   #contact .centerAbsolute { width:$nWidth;
-    .cGroup { .cItem { width:$cGItemW;height:$cGItemH;transition:background-color 0.25s;margin: 12px;
+    .cGroup { .cItem { width:$cGItemW;height:$cGItemH;margin:12px;transition:background-color 0.25s;
       }
-      .cItem:hover { background:rgba($color:white, $alpha:0.1);cursor: pointer;
+      .cItem:hover { background:rgba($color:white, $alpha:0.1);cursor:pointer;
       }
     }
   }

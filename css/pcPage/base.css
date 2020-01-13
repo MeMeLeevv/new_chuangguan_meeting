@@ -5,9 +5,7 @@
   box-sizing: border-box;
 }
 
-span,
-a,
-img {
+span, a, img {
   display: inline-block;
 }
 

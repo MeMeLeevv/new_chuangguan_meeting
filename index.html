@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>大会前端页面</title>
-    <link href="./css/normalize.css" rel="stylesheet" type="text/css" />
-    <link href="./css/base.css" rel="stylesheet" type="text/css" />
-    <link href="./css/header.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="./css/fullpage.css" />
-    <link rel="stylesheet" href="./css/fullPageSection.css" />
-    <link rel="stylesheet" href="./css/csslider.css" />
-    <link rel="stylesheet" href="./css/jquery.mCustomScrollbar.min.css" />
+    <link href="./css/pcPage/normalize/normalize.css" rel="stylesheet" type="text/css" />
+    <link href="./css/pcPage/base.css" rel="stylesheet" type="text/css" />
+    <link href="./css/pcPage/header.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./css/pcPage/tool/fullpage.min.css" />
+    <link rel="stylesheet" href="./css/pcPage/fullpageSection.css" />
+    <link rel="stylesheet" href="./css/pcPage/tool/csslider.css" />
+    <link rel="stylesheet" href="./css/pcPage/tool/jquery.mCustomScrollbar.min.css" />
   </head>
   <body>
     <div id="header">
       <span class="logo"></span>
       <span class="navbarwrap">
         <ul class="navbar">
-          <li><a href="/">首页</a></li>
+          <li><a href="/new_chuangguan_meeting/index.html">首页</a></li>
           <li><a href="./guests.html">大会嘉宾</a></li>
           <li><a href="./meeting.html">大会议程</a></li>
           <li><a href="./award.html">卓越成就奖</a></li>
@@ -30,21 +30,21 @@
         ><!-- 注意保底措施，加载图片失败则color补充 -->
       </span>
     </div>
-    <div id="fullpage" class="fullPage">
+    <div id="fullpage" class="fullpage">
       <!-- 
-        headImage
-        background
-        highlight
-        scale
-        excellenceAward
-        guests
-        agenda
-        news
-        registration
-        partners
-        cooperativeMedia
-        address 
-        contact
+      1  headImage
+      2  background
+      3  highlight
+      4  scale
+      5  excellenceAward
+      6  guests
+      7  agenda
+      8  news
+      9  registration
+      10  partners
+      11  cooperativeMedia
+      12  address 
+      13  contact
         首先加载页面的时候先加载栏目列表，并初始化section的个数，绑定每个栏目的id和type，以便每屏加载的时候去请求数据
         sectio默认是用全局bg，但是也要预留单独可设背景
       每屏数据不同，动态加载数据以及html模块，懒加载?每屏加载都要请求一次数据
@@ -59,14 +59,12 @@
         title="联系我们 —— title文字/titleBg、内容图"
       >
         <div class="centerAbsolute">
-          <div class="cTitle">联系我们</div>
-          <!-- <div class="cTitleBg textCenter">
+          <!-- <div class="cTitle">联系我们</div> -->
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
           <div class="cGroup">
             <img
             class="cItem cBg"
@@ -99,14 +97,12 @@
         title="合作伙伴 —— title文字/titleBg、group（组标题、内容图片）"
       >
         <div class="centerAbsolute">
-          <div class="cTitle paddingMore">合作伙伴</div>
-          <!--  <div class="textCenter">
+          <!-- <div class="cTitle paddingMore">合作伙伴</div> -->
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
 
           <div class="pWrap mCustomScrollbar">
             <div class="pGroup">
@@ -711,11 +707,13 @@
         data-type="1"
         title="主视觉 —— 只有一张栏目背景图"
       >
+      <div class="centerAbsolute">
         <img
-          class="cBg centerAbsolute"
+          class="cBg"
           src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
-          alt=""
+          alt="主视觉视图"
         />
+      </div>
       </div>
       <div
         class="section centerRelative"
@@ -725,14 +723,12 @@
         title="大会背景 —— title文字/titleBg、栏目descrition文字"
       >
         <div class="centerAbsolute">
-          <div class="cTitle">大会背景</div>
-          <!--  <div class="textCenter">
+          <!-- <div class="cTitle">大会背景</div> -->
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
 
           <div class="cDesc">
             2019年，是中国新时代的科技元年，中国科技创新成为推动经济社会高质量高效益发展的精神富矿。5G是推
@@ -753,7 +749,7 @@
       </div>
       <div
         class="section centerRelative"
-        id="hightlight"
+        id="highlight"
         data-cid=""
         data-type=""
         title="大会亮点 —— title文字/titleBg、分组（title、titleBg、desc、groupBg）"
@@ -820,13 +816,11 @@
       >
         <div class="centerAbsolute">
           <div class="cTitle">大会规模</div>
-          <!-- <div class="cTitleBg textCenter">
-            <img
+            <!-- <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
-            />
-          </div> -->
+            /> -->
           <img
             class="cBg shadow"
             src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
@@ -835,16 +829,13 @@
         </div>
       </div>
     </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/header.js"></script>
-    <script src="js/fullpage.js"></script>
-    <script src="js/fullPageSection.js"></script>
-    <script src="js/guests.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script>
-      let ele = document.querySelector('#headImage')
-      console.log(ele['dataset']['cid'],'ele55')
-    </script>
+    <script src="js/pcPage/tool/jquery-3.4.1.min.js"></script>
+    <script src="js/pcPage/projectMsg.js"></script>
+    <!-- <script src="js/pcPage/header.js"></script> -->
+    <script src="js/pcPage/tool/fullpage.js"></script>
+    <script src="js/pcPage/tool/fullpage.extensions.min.js"></script>
+    <!-- <script src="js/pcPage/fullpageSection.js"></script> -->
+    <script src="js/pcPage/tool/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- 大会咨询插件： http://www.jq22.com/yanshi21621 -->
   </body>

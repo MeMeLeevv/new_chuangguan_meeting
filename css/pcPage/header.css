@@ -18,7 +18,7 @@
 #header .logo {
   width: 243px;
   height: 40px;
-  background: url(../img/1.jpg) no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   -webkit-transform: translateY(50%);
   transform: translateY(50%);
@@ -61,7 +61,7 @@
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background: url(../img/a8563f87803853.5dc31e035b89b.jpg) no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   border-radius: 5px;
 }

@@ -4,7 +4,7 @@ $headerMinWidth:1350px; $headerBg:#17000c 100%; $headerHeight:76px; $title-font:
 #header .navbarwrap .navbar .activeNavbar { border-bottom:2px solid $fontColor;
 }
 #header { position:fixed;  padding:0 120px; width:100vw; height:$headerHeight; background:$headerBg;color:$fontColor; z-index:1000; top:0; left:0; min-width:$headerMinWidth;
-    .logo { width:$logoWidth; height:$logoHeight; background:url(../img/1.jpg) no-repeat; background-size:cover;-webkit-transform:translateY(50%);transform:translateY(50%);
+    .logo { width:$logoWidth; height:$logoHeight; background-repeat: no-repeat; background-size:cover;-webkit-transform:translateY(50%);transform:translateY(50%);
     }
     .navbarwrap { float:right;
         .navbar { display:inline-block;  line-height:$headerHeight;
@@ -17,7 +17,7 @@ $headerMinWidth:1350px; $headerBg:#17000c 100%; $headerHeight:76px; $title-font:
         }
         .RegistrationBtn:hover { cursor:pointer;
         }
-        .RegistrationBtn { width:$regisBtnWidth; height:$regisBtnHeight;line-height:$regisBtnHeight;  text-align:center;background:url(../img/a8563f87803853.5dc31e035b89b.jpg) no-repeat;background-size:cover;border-radius:5px;
+        .RegistrationBtn { width:$regisBtnWidth; height:$regisBtnHeight;line-height:$regisBtnHeight;  text-align:center;background-repeat: no-repeat;background-size:cover;border-radius:5px;
         }
     }
 }
