@@ -1,7 +1,7 @@
-#header .navbarwrap .navbar .activeNavbar {
+.cg_header .navbarwrap .navbar .activeNavbar {
   border-bottom: 2px solid #fff;
 }
-#header {
+.cg_header {
   position: fixed;
   padding: 0 120px;
   width: 100vw;
@@ -13,7 +13,7 @@
   left: 0;
   min-width: 1350px;
 }
-#header .logo {
+.cg_header .logo {
   width: 243px;
   height: 40px;
   background-repeat: no-repeat;
@@ -21,14 +21,14 @@
   -webkit-transform: translateY(50%);
   transform: translateY(50%);
 }
-#header .navbarwrap {
+.cg_header .navbarwrap {
   float: right;
 }
-#header .navbarwrap .navbar {
+.cg_header .navbarwrap .navbar {
   display: inline-block;
   line-height: 76px;
 }
-#header .navbarwrap .navbar li {
+.cg_header .navbarwrap .navbar li {
   display: inline-block;
   margin: 0 20px;
   height: 35px;
@@ -37,17 +37,17 @@
   transition: border-bottom 0.25s;
   border-bottom: 2px solid transparent;
 }
-#header .navbarwrap .navbar li a {
+.cg_header .navbarwrap .navbar li a {
   height: 35px;
 }
-#header .navbarwrap .navbar li:hover {
+.cg_header .navbarwrap .navbar li:hover {
   cursor: pointer;
   border-bottom: 2px solid #fff;
 }
-#header .navbarwrap .RegistrationBtn:hover {
+.cg_header .navbarwrap .RegistrationBtn:hover {
   cursor: pointer;
 }
-#header .navbarwrap .RegistrationBtn {
+.cg_header .navbarwrap .RegistrationBtn {
   width: 100px;
   height: 40px;
   line-height: 40px;

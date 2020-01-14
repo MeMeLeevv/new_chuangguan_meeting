@@ -1,5 +1,5 @@
 ;(function ($, win, doc) {
-  var navbar = {
+  var cg_nav = {
     data: {
       // 导航栏的每栏url，用于监测当前的网页地址是属于哪一栏
       indexUrl: '/new_chuangguan_meeting/index.html',
@@ -10,22 +10,21 @@
       reviewUrl: '',
       consultUrl: '',
 
-      logoClass: '#header .logo',
-      regisBtnClass: '#header .navbarwrap .RegistrationBtn',
+      logoClass: '.cg_header .logo',
+      regisBtnClass: '.cg_header .navbarwrap .RegistrationBtn',
       activeNavClass: 'activeNavbar',
-      navbarItemClass: '#header .navbarwrap .navbar li a'
+      navbarItemClass: '.cg_header .navbarwrap .navbar li a'
 
     },
     /* 
     首页导航栏初始化：获取logo图和小图并相应修改页面css
     */
     init: function (params) {
-      navbar.activeNav()
-      console.log(win.project_base_msg, 'win.project_base_msg.logo_img')
+      cg_nav.activeNav()
 
       if (project_base_msg.logo_img) {
-        $(navbar.data.logoClass).css('background-image', `url(${project_base_msg.logo_img})`)
-        $(navbar.data.regisBtnClass).css('background-image', `url(${project_base_msg.small_picture_img})`)
+        $(cg_nav.data.logoClass).css('background-image', `url(${project_base_msg.logo_img})`)
+        $(cg_nav.data.regisBtnClass).css('background-image', `url(${project_base_msg.small_picture_img})`)
       }
 
     },
@@ -33,8 +32,8 @@
     高亮当前链接下的导航栏li
     */
     activeNav: function () {
-      var data = navbar.data
-      var activePath = navbar.getPositionUrl() // href获取到的路径是"http://localhost:3000/"这种绝对路径，所以这里采用获取网页地址的绝对路径
+      var data = cg_nav.data
+      var activePath = cg_nav.getPositionUrl() // href获取到的路径是"http://localhost:3000/"这种绝对路径，所以这里采用获取网页地址的绝对路径
       // console.log(activePath, 'path')
       $(data.navbarItemClass).each(function (index,item) {
         // console.log(item.href, 'innerHref')
@@ -61,6 +60,6 @@
     }
   } 
   $(function(){
-    navbar.init();
+    cg_nav.init();
   })
 })(jQuery, window, document)

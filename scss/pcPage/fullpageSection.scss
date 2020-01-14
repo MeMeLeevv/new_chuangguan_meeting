@@ -23,16 +23,16 @@ $rCBdwidth:480px;$pHeight:550px;$pItemW:175px;$pItemH:70px;$cGItemW:350px;$cGIte
 }
 .shadow:hover { cursor:pointer;-webkit-box-shadow:0 2px 32px 0 rgba(0, 0, 0, 0.2); box-shadow:0 2px 32px 0 rgba(0, 0, 0, 0.2);
 }
-#fullpage { .section { color:white;  background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;  background-size:cover;
+.cg_fullpage { .section { color:white;  background:url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;  background-size:cover;
     /* 大会头图样式 */
   }
-  #background .centerAbsolute { width:$backgroundWidth;
+  .cg_background .centerAbsolute { width:$backgroundWidth;
     .cDesc { font-size:18px;  line-height:28px;text-align:left;text-indent:2rem;
 
 letter-spacing:2px;
     }
   }
-  #highlight .centerAbsolute { width:$highlightWidth; padding:0 50px;
+  .cg_highlight .centerAbsolute { width:$highlightWidth; padding:0 50px;
     .hLContent { font-size:0;
       .hLGroup { display:inline-block; width:$hLGroupWidth; margin:23px 0;  vertical-align:middle;background:url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f)
         no-repeat; background-size:cover;
@@ -50,7 +50,7 @@ letter-spacing:2px;
       }
     }
   }
-  #guests .centerAbsolute { .csslider > ul { width:$gWidth; height:$gHeight;  font-size:0;-webkit-perspective:1000;perspective:1000;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;
+  .cg_guests .centerAbsolute { .csslider > ul { width:$gWidth; height:$gHeight;  font-size:0;-webkit-perspective:1000;perspective:1000;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;
       .flipWrap { display:inline-block;width:$ggWidth; height:$ggHeight;
         .flip { position:relative;width:$ggWidth; height:$ggHeight;font-size:0;-webkit-transition:-webkit-transform 0.25s;transition:-webkit-transform 0.25s;transition:        transform 0.25s;transition:        transform 0.25s, -webkit-transform 0.25s;  -webkit-transform-style:preserve-3d;  transform-style:preserve-3d;
           .back { top:-100%;-webkit-transform:rotateY(-180deg);transform:rotateY(-180deg);
@@ -84,7 +84,7 @@ letter-spacing:2px;
     .csslider > .navigation label:after { background:$gArrowHoverC;
     }
   }
-  #agenda .centerAbsolute { width:$aWidth;  font-size:0;
+  .cg_agenda .centerAbsolute { width:$aWidth;  font-size:0;
     .aGroup { display:inline-block; margin:0 0 20px 0; vertical-align:middle;
       .aItem { border-radius:10px;
         .aPic { width:$aPicWidth; height:auto;
@@ -94,7 +94,7 @@ letter-spacing:2px;
     .aGroup:nth-child(odd) { margin:0 0 20px 20px;
     }
   }
-  #news .centerAbsolute { width:$nWidth;
+  .cg_news .centerAbsolute { width:$nWidth;
     .nWrap { max-height:$nHeight; overflow:auto;
       .nItem { width:$nItemWidth; height:$nItemHeight; margin:0 0 24px 0; padding:24px; border:1px solid rgba(255,255,255, 0.1);  -webkit-transition:background-color 0.25s;          transition:background-color 0.25s;
         .mainImg { width:$nItemPicW; height:auto; vertical-align:top;
@@ -112,13 +112,13 @@ letter-spacing:2px;
       }
     }
   }
-  #registration .centerAbsolute { width:$nWidth;
+  .cg_registration .centerAbsolute { width:$nWidth;
     .rCBg { width:$rCBdwidth;height:auto;margin:0 0 33px 0;
     }
     .rCBg:nth-child(odd) { margin:0 0 33px 32px;
     }
   }
-  #partners .centerAbsolute { width:$nWidth;
+  .cg_partners .centerAbsolute { width:$nWidth;
     .pWrap { max-height:$pHeight;overflow:auto;
       .pGroup { margin:0 0 20px 0;
         .pTitle { margin:0 0 25px 0; font-size:18px;
@@ -129,7 +129,7 @@ letter-spacing:2px;
       }
     }
   }
-  #contact .centerAbsolute { width:$nWidth;
+  .cg_contact .centerAbsolute { width:$nWidth;
     .cGroup { .cItem { width:$cGItemW;height:$cGItemH;margin:12px;transition:background-color 0.25s;
       }
       .cItem:hover { background:rgba($color:white, $alpha:0.1);cursor:pointer;

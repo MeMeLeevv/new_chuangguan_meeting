@@ -2,13 +2,13 @@
 (function ($, win, doc) {
   // 主视觉逻辑如下： 当用户轮动到相应的页面的时候，先监听当前栏目的信息（id、名称——可以在滚动小圆点hover的时候给提示、type）主要是根据type来加载样式
   // 也可以一开始就拉取navbar列表的数据，然后根据type以及id全部拉取数据
-  var section = {
+  var cg_sec = {
     data: {
       headerHeight: '76px',
       id: '', // 栏目id
       type: '', //栏目类型
       bgUrl: '', // ,每屏背景，默认是全局背景
-      secWrapSelector: '#fullpage',
+      fullpageSelector: '.cg_fullpage',
       secClass: 'section',
 
       secsMsg: [], // 每个栏目信息
@@ -16,153 +16,122 @@
       typeMap: {
         // 根据type来布置每个栏目的id选择器
         // 栏目类型
-        1: 'headImage',
-        2: 'background',
-        3: 'highlight',
-        4: 'scale',
-        5: 'excellenceAwardOrAddress',
-        6: 'guests',
-        7: 'agendaOrContactOrRegis',
-        8: 'news',
-        9: 'agendaOrContactOrRegis',
-        10: 'parnerOrMedia',
-        11: 'parnerOrMedia',
-        12: 'excellenceAwardOrAddress',
-        13: 'agendaOrContactOrRegis'
+        1: 'cg_headImage',
+        2: 'cg_background',
+        3: 'cg_highlight',
+        4: 'cg_scale',
+        5: 'cg_excellenceAwardOrAddress',
+        6: 'cg_guests',
+        7: 'cg_agendaOrContactOrRegis',
+        8: 'cg_news',
+        9: 'cg_agendaOrContactOrRegis',
+        10: 'cg_parnerOrMedia',
+        11: 'cg_parnerOrMedia',
+        12: 'cg_excellenceAwardOrAddress',
+        13: 'cg_agendaOrContactOrRegis'
       },
     },
     init: function (params) {
-      // section.createHeadImage()
-      // section.createBackground()
-      // section.createScale()
-      
-      section.getColumnList()
+      cg_sec.getColumnList()
     },
     /* 
     获取栏目列表，初始化屏数,将type和c_id来获取每个栏目的内容
     @param { Node.ELEMENT_NOD } node 元素节点
     @return { Boolean } 
      */
-    getColumnList () {
-      $.ajax({
-        url: '/front/column/getColumnList',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            p_id: win.project_base_msg.p_id,
-        },
-        success: function (data) {
-            var result = data.data;
+    getColumnList: function () {
 
-            if (data.code == 1) {
-              // 保存大会项目信息
-              // section.data = result
-              console.log(result, 'section');
-              // 根据列表个数创建pullPage页数以及每页的框架
-              for (let i = 0; i < result.length; i++) {
-              section.data.secsMsg.push(result[i]) // 保存数据
-              let data = result[i]
-              var parentEle = $(section.data.secWrapSelector)
-              let posDiv = section.createElement('div', [
-                ['className', 'section centerRelative'],
-              ])
-              let posWrap = section.createElement('div', [
-                ['className', 'centerAbsolute'],
-                ['id', section.data.typeMap[data.type]]
-              ], [
-                ["c_id", data.c_id],
-                ['type', data.type],
-                ['tooltip', data.name]
-              ])
-              posWrap.appendChild(posDiv)
-              parentEle.insertBefore(posWrap, parentEle.firstChild)
+      cg.request('/front/column/getColumnList', {
+        p_id: p_id,
+      }, function (data) {
+        var result = data.data;
+        if (data.code == 1) {
+          // 保存大会项目信息
+          var fullpageWrap = $(cg_sec.data.fullpageSelector)
+          var sec_frag = ''
+
+          console.log(result, 'section');
+          // 根据列表item个数创建pullPage页数以及每页的框架
+          for (let i = 0; i < result.length; i++) {
+            let data = result[i]
+            // 保存数据
+            cg_sec.data.secsMsg.push(result[i])
+            // 每页fullpage框架
+            sec_frag += `<div class="section centerRelative ${cg_sec.data.typeMap[data.type]}"
+            data-c_id="${data.c_id}" data-type="${data.type}" data-tooltip="${data.name}">
+              <div class="centerAbsolute"></div>
+            </div>`
+          }
+          // 将新的Dom元素插入到文档中
+          fullpageWrap.html(sec_frag)
+
+          // 初始化fullpage插件
+          $(cg_sec.data.fullpageSelector).fullpage({
+            //options here
+            scrollingSpeed: 700, //滚动速度，单位为毫秒
+            autoScrolling: true, //是否使用插件的滚动方式，如果选择 false，则会出现浏览器自带的滚动条
+            scrollHorizontally: true,
+            navigation: true, //显示一个由小圆圈组成的导航栏
+            navigationPosition: 'left', // 定义导航栏显示的位置
+            navigationTooltips: cg_sec.data.navigationTooltips, //（默认为[]）定义要使用导航圈的工具提示。 如果您愿意，也可以在每个部分中使用属性data-tooltip来定义它们
+            paddingTop: cg_sec.data.headerHeight, //与顶部的距离
+            onLeave: function (origin, destination, direction) { // 一旦用户离开 section ，过渡到新 section ，就会触发此回调。 返回 “false” 将在移动发生之前取消移动。
+              var leavingSection = this;
+
+              //离开第二个section后
+              if (origin.index == 1 && direction == 'down') {
+                alert("前往第3个section！");
+              } else if (origin.index == 1 && direction == 'up') {
+                alert("前往第1个section！");
               }
+              console.log(destination, 'destination') // 下一页的page信息
             }
-        },
-        error: function (textStatus) {
-            alert('咦，获取出错了,请重试！');
+          });
+          console.log(fullpage_api.getActiveSection(), 'activeSection') // 当前激活的page信息
+          //滚动到第几页，第几个幻灯片；页面从1计算，幻灯片从0计算
+          fullpage_api.moveTo(5, 0);
+          //和moveTo一样，但是没有动画效果
+          // fullpage_api.silentMoveTo(section, slide);
         }
-    });
+      });
     },
-    /* 
-    判断是否是HTML元素节点
-    @param { Node.ELEMENT_NOD } node 元素节点
-    @return { Boolean } 
-     */
-    isHTMLElement(node) {
-      if (window.HTMLElement) { // IE6/7/8不支持
-        return node instanceof window.HTMLElement
-      } else {
-        var d = document.createElement("div");
-        try {
-          d.appendChild(obj.cloneNode(true));
-          return obj.nodeType === 1 ? true : false;
-        } catch (e) {
-          return false;
-        }
-      }
-    },
-    /* 
-    创建元素节点
-    @param {string} ele 子元素的节点类型
-    @param { Array } attrArr 普通属性二维字符串数组 [[name,value]]
-    @param { Array } datasetArr 自定义属性二维字符串数组 [[name,value]]
-    @return { Node.ELEMENT_NODE } 返回新增的元素节点
-     */
-    createElement(ele, attrArr, datasetArr, text) {
-      ele = document.createElement(ele)
-      //判断属性参数是否是一个有内容的数组
-      if (attrArr && attrArr instanceof Array && attrArr.length !== 0) {
-        for (let i = 0; i < attrArr.length; i++) {
-          ele[attrArr[i][0]] = attrArr[i][1]
-        }
-      }
-      //判断自定义属性参数是否是一个有内容的数组
-      if (datasetArr && datasetArr instanceof Array && datasetArr.length !== 0) {
-        for (let i = 0; i < datasetArr.length; i++) {
-          ele.dataset[datasetArr[i][0]] = datasetArr[i][1]
-        }
-      }
-      // 如果存在文本则插入
-      text && (ele.innerHTML = text)
-      return ele
-    },
+
+
 
     /* 
     创建大会头图 
     @return null
     */
-    createHeadImage() {
+    createHeadImage: function () {
       let data = {
         name: '主视觉',
         cid: '123',
         type: '0',
         imgSrc: 'http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f'
       }
-      var parentEle = document.querySelector(section.data.secWrapSelector);
+      var fullpageWrap = document.querySelector(cg.data.fullpageSelector);
       //创建头图图片
-      let img = section.createElement('img', [
+      let img = cg.createElement('img', [
         ['className', 'cBg centerAbsolute'],
         ['src', 'http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f']
       ], [
         ["alt", '主视觉视图']
       ])
       //创建大会头图框架
-      let headImage = section.createElement('div', [
-        ['className', 'section centerRelative'],
-        ['id', 'headImage']
+      let headImage = cg.createElement('div', [
+        ['className', 'section centerRelative cg_headImage'],
       ], [
         ["cid", '123'],
         ['type', '1']
       ])
       headImage.appendChild(img)
-      parentEle.insertBefore(headImage, parentEle.firstChild)
+      fullpageWrap.insertBefore(headImage, fullpageWrap.firstChild)
     },
     /* 
     创建大会背景 
     @return null
     */
-    createBackground() {
+    createBackground: function () {
       let data = {
         name: '大会背景',
         cid: '123',
@@ -179,16 +148,16 @@
         领域、新消费、数字文娱、智慧网联等科技领域核心内容，面向全球科技产业及上下游企业，旨在精准把握行业风
         云激荡的发展方向与未来趋势。</div>`
       }
-      var parentEle = document.querySelector(section.data.secWrapSelector);
+      var fullpageWrap = document.querySelector(cg.data.fullpageSelector);
       var fragment = document.createDocumentFragment()
       //创建大会背景title
       let title
       if (data.title) { // 先判断title是图片还是文字
-        title = section.createElement('div', [
+        title = cg.createElement('div', [
           ['className', 'cTitle']
         ], null, data.name)
       } else {
-        title = section.createElement('img', [
+        title = cg.createElement('img', [
           ['src', data.imgSrc],
           ['alt', '大会背景图片'],
           ['className', 'cTitleBg']
@@ -196,26 +165,25 @@
       }
       fragment.appendChild(title)
       //创建大会背景栏目desc
-      let cDesc = section.createElement('div', [
+      let cDesc = cg.createElement('div', [
         ['className', 'cDesc']
       ], null, data.desc)
       fragment.appendChild(cDesc)
       //创建承载大会背景content的主体
-      let content = section.createElement('div', [
+      let content = cg.createElement('div', [
         ['className', 'centerAbsolute']
       ])
       content.appendChild(fragment)
-      let background = section.createElement('div', [
-        ['className', 'section centerRelative'],
-        ['id', 'background']
+      let background = cg.createElement('div', [
+        ['className', 'section centerRelative cg_background'],
       ], [
         ["cid", '123'],
         ['type', '1']
       ])
       background.appendChild(content)
-      parentEle.insertBefore(background, parentEle.firstChild)
+      fullpageWrap.insertBefore(background, fullpageWrap.firstChild)
     },
-    createScale() {
+    createScale: function () {
       let data = {
         name: '大会规模',
         cid: '123',
@@ -223,16 +191,16 @@
         title: true,
         imgSrc: 'http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f'
       }
-      var parentEle = document.querySelector(section.data.secWrapSelector)
+      var fullpageWrap = document.querySelector(cg.data.fullpageSelector)
       var fragment = document.createDocumentFragment()
       //创建大会规模title
       let title
       if (data.title) { // 先判断title是图片还是文字
-        title = section.createElement('div', [
+        title = cg.createElement('div', [
           ['className', 'cTitle']
         ], null, data.name)
       } else {
-        title = section.createElement('img', [
+        title = cg.createElement('img', [
           ['src', data.imgSrc],
           ['alt', '大会规模图片'],
           ['className', 'cTitleBg']
@@ -240,37 +208,35 @@
       }
       fragment.appendChild(title)
       //创建大会规模内容图
-      let contentImg = section.createElement('img', [
+      let contentImg = cg.createElement('img', [
         ['className', 'cBg shadow'],
-        ['src',data.imgSrc]
+        ['src', data.imgSrc]
       ])
       fragment.appendChild(contentImg)
       //创建承载大会规模content的主体
-      let content = section.createElement('div', [
+      let content = cg.createElement('div', [
         ['className', 'centerAbsolute']
       ])
       content.appendChild(fragment)
       //创建大会头图框架
-      let scale = section.createElement('div', [
-        ['className', 'section centerRelative'],
-        ['id', 'scale'],
+      let scale = cg.createElement('div', [
+        ['className', 'section centerRelative cg_'],
         ['title', '大会规模 —— title文字/titleBg、栏目背景图']
       ], [
         ["cid", '123'],
         ['type', '4']
       ])
       scale.appendChild(content)
-      parentEle.insertBefore(scale, parentEle.firstChild)
+      fullpageWrap.insertBefore(scale, fullpageWrap.firstChild)
     },
     /* 创建大会亮点 */
-    createHighlight() {
+    createHighlight: function () {
       let data = {
         name: '大会亮点',
         cid: '123',
         type: '3',
         title: true,
-        groupContent: [
-          {
+        groupContent: [{
             title: '5G引爆科技前沿',
             desc: '未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。未来G时代引领科技前沿，激发新时代。',
             gBgSrc: 'http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f',
@@ -302,16 +268,16 @@
           }
         ]
       }
-      var parentEle = document.querySelector(section.data.secWrapSelector)
+      var fullpageWrap = document.querySelector(cg.data.fullpageSelector)
       var fragmentBig = document.createDocumentFragment()
       //创建大会规模title
       let title
       if (data.title) { // 先判断title是图片还是文字
-        title = section.createElement('div', [
+        title = cg.createElement('div', [
           ['className', 'cTitle']
         ], null, data.name)
       } else {
-        title = section.createElement('img', [
+        title = cg.createElement('img', [
           ['src', data.imgSrc],
           ['alt', '大会亮点图片'],
           ['className', 'cTitleBg']
@@ -320,65 +286,53 @@
       fragmentBig.appendChild(title)
       let fragmentMid = document.createDocumentFragment()
       //创建大会规模group内容
-      for(let i = 0; i < data.groupContent.length; i++) {
+      for (let i = 0; i < data.groupContent.length; i++) {
         //创建分组内容
         let fragment = document.createDocumentFragment()
-        let gTitle = section.createElement('div', [['className','gTitle']], null, data.groupContent[i].title)
-        let gDesc = section.createElement('div', [['className','desc']], null, data.groupContent[i].desc)
+        let gTitle = cg.createElement('div', [
+          ['className', 'gTitle']
+        ], null, data.groupContent[i].title)
+        let gDesc = cg.createElement('div', [
+          ['className', 'desc']
+        ], null, data.groupContent[i].desc)
         fragment.append(gTitle, gDesc)
-        let wrap = section.createElement('div',[['className','wrap']])
+        let wrap = cg.createElement('div', [
+          ['className', 'wrap']
+        ])
         wrap.append(fragment)
-        let hLGroup = section.createElement('div',[['className','hLGroup']])
+        let hLGroup = cg.createElement('div', [
+          ['className', 'hLGroup']
+        ])
         hLGroup.appendChild(wrap)
         fragmentMid.appendChild(hLGroup)
       }
       //创建承载组内容的载体
-      let hLContent = section.createElement('div',[['className','hLContent']])
+      let hLContent = cg.createElement('div', [
+        ['className', 'hLContent']
+      ])
       hLContent.appendChild(fragmentMid)
       fragmentBig.appendChild(fragmentMid)
       //创建承载大会规模content的主体
-      let content = section.createElement('div', [
+      let content = cg.createElement('div', [
         ['className', 'centerAbsolute']
       ])
       content.appendChild(fragmentBig)
       //创建大会头图框架
-      let highlight = section.createElement('div', [
-        ['className', 'section centerRelative'],
-        ['id', 'highlight'],
+      let highlight = cg.createElement('div', [
+        ['className', 'section centerRelative cg_highlight'],
         ['title', '大会亮点 —— title文字/titleBg、栏目背景图']
       ], [
         ["cid", '123'],
         ['type', '3']
       ])
       highlight.appendChild(content)
-      parentEle.insertBefore(highlight, parentEle.firstChild)
+      fullpageWrap.insertBefore(highlight, fullpageWrap.firstChild)
     },
   }
   $(function () {
-    section.init();
-    $('#fullpage').fullpage({
-      //options here
-      scrollingSpeed: 700, //滚动速度，单位为毫秒
-      autoScrolling: true, //是否使用插件的滚动方式，如果选择 false，则会出现浏览器自带的滚动条
-      scrollHorizontally: true,
-      navigation: true, //显示一个由小圆圈组成的导航栏
-      navigationPosition: 'left', // 定义导航栏显示的位置
-      navigationTooltips: section.data.navigationTooltips, //（默认为[]）定义要使用导航圈的工具提示。 如果您愿意，也可以在每个部分中使用属性data-tooltip来定义它们
-      paddingTop: section.data.headerHeight, //与顶部的距离
-      onLeave: function(origin, destination, direction){ // 一旦用户离开 section ，过渡到新 section ，就会触发此回调。 返回 “false” 将在移动发生之前取消移动。
-        var leavingSection = this;
-    
-        //离开第二个section后
-        if(origin.index == 1 && direction =='down'){
-          alert("前往第3个section！");
-        }
-    
-        else if(origin.index == 1 && direction == 'up'){
-          alert("前往第1个section！");
-        }
-      }
-    });
-    console.log(fullpage_api.getActiveSection(), 'activeSection')
+
+    cg_sec.init();
+
 
   })
 })(jQuery, window, document)

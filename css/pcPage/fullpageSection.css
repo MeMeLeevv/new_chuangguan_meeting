@@ -1,9 +1,7 @@
-@charset "UTF-8";
-/* 多行省略函数 */
-/* 使用relative和absolute实现水平垂直居中 */
 .centerRelative {
   position: relative;
 }
+
 .centerRelative .centerAbsolute {
   position: absolute;
   top: 50%;
@@ -13,14 +11,12 @@
   transform: translate(-50%, -50%);
 }
 
-/* 大会栏目title文字样式 */
 .cTitle {
   margin: 0 0 60px 0;
   font-size: 34px;
   font-weight: 700;
 }
 
-/* 大会栏目title背景图片样式 */
 .cTitleBg {
   width: auto;
   height: 34px;
@@ -31,7 +27,6 @@
   text-align: center;
 }
 
-/* 合作伙伴title的文字对齐组title */
 .paddingMore {
   padding-right: 30px;
 }
@@ -49,30 +44,34 @@
   box-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
-#fullpage .section {
+.cg_fullpage .section {
   color: white;
   background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
   background-size: cover;
-  /* 大会头图样式 */
 }
-#fullpage #background .centerAbsolute {
+
+.cg_fullpage .cg_background .centerAbsolute {
   width: 1000px;
 }
-#fullpage #background .centerAbsolute .cDesc {
+
+.cg_fullpage .cg_background .centerAbsolute .cDesc {
   font-size: 18px;
   line-height: 28px;
   text-align: left;
   text-indent: 2rem;
   letter-spacing: 2px;
 }
-#fullpage #highlight .centerAbsolute {
+
+.cg_fullpage .cg_highlight .centerAbsolute {
   width: 1200px;
   padding: 0 50px;
 }
-#fullpage #highlight .centerAbsolute .hLContent {
+
+.cg_fullpage .cg_highlight .centerAbsolute .hLContent {
   font-size: 0;
 }
-#fullpage #highlight .centerAbsolute .hLContent .hLGroup {
+
+.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup {
   display: inline-block;
   width: 538px;
   margin: 23px 0;
@@ -80,13 +79,15 @@
   background: url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f) no-repeat;
   background-size: cover;
 }
-#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap {
+
+.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap {
   position: relative;
   padding: 32px;
   -webkit-transition: background-color 0.25s;
   transition: background-color 0.25s;
 }
-#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap .gTitle {
+
+.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap .gTitle {
   position: absolute;
   top: -20px;
   left: 10px;
@@ -99,18 +100,22 @@
   background: url(http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8) no-repeat;
   background-size: cover;
 }
-#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap .desc {
+
+.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap .desc {
   font-size: 16px;
   letter-spacing: 1px;
 }
-#fullpage #highlight .centerAbsolute .hLContent .hLGroup .wrap:hover {
+
+.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap:hover {
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-#fullpage #highlight .centerAbsolute .hLContent .hLGroup:nth-child(even) {
+
+.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup:nth-child(even) {
   margin: 0 0 0 22px;
 }
-#fullpage #guests .centerAbsolute .csslider > ul {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul {
   width: 1200px;
   height: 540px;
   font-size: 0;
@@ -119,12 +124,14 @@
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap {
   display: inline-block;
   width: 220px;
   height: 256px;
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip {
   position: relative;
   width: 220px;
   height: 256px;
@@ -136,12 +143,15 @@
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .back {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip .back {
   top: -100%;
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .front, #fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .back {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip .front,
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip .back {
   position: absolute;
   top: 0;
   left: 0;
@@ -150,7 +160,8 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup {
   display: inline-block;
   width: 220px;
   height: 256px;
@@ -158,7 +169,8 @@
   -webkit-transition: background-color 0.35s;
   transition: background-color 0.35s;
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gAvatar {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gAvatar {
   width: 130px;
   height: 130px;
   border: 1px solid #e86feb;
@@ -168,72 +180,89 @@
   transition: transform 0.35s, -webkit-transform 0.35s;
   border-radius: 50%;
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gname {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gname {
   margin: 20px 0 10px 0;
   font-weight: 700;
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gdesc {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap .flip .gGroup .gdesc {
   width: 164px;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap:hover .flip {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap:hover .flip {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap:hover .flip .gGroup {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap:hover .flip .gGroup {
   background: #e86feb;
   cursor: pointer;
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
-#fullpage #guests .centerAbsolute .csslider > ul .flipWrap:hover .flip .gGroup .gdesc {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > ul .flipWrap:hover .flip .gGroup .gdesc {
   width: 164px;
   font-size: 14px;
   color: white;
 }
-#fullpage #guests .centerAbsolute .csslider > .arrows label {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > .arrows label {
   -webkit-box-shadow: inset 2px -2px 0 1px #3a3a3a;
   box-shadow: inset 2px -2px 0 1px #3a3a3a;
 }
-#fullpage #guests .centerAbsolute .csslider > .arrows label:hover {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > .arrows label:hover {
   -webkit-box-shadow: inset 3px -3px 0 2px #e86feb;
   box-shadow: inset 3px -3px 0 2px #e86feb;
   box-shadow: inset 3px -3px 0 2px #e86feb;
 }
-#fullpage #guests .centerAbsolute .csslider > .navigation label {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > .navigation label {
   background: #3a3a3a;
 }
-#fullpage #guests .centerAbsolute .csslider > .navigation label:after {
+
+.cg_fullpage .cg_guests .centerAbsolute .csslider > .navigation label:after {
   background: #e86feb;
 }
-#fullpage #agenda .centerAbsolute {
+
+.cg_fullpage .cg_agenda .centerAbsolute {
   width: 1100px;
   font-size: 0;
 }
-#fullpage #agenda .centerAbsolute .aGroup {
+
+.cg_fullpage .cg_agenda .centerAbsolute .aGroup {
   display: inline-block;
   margin: 0 0 20px 0;
   vertical-align: middle;
 }
-#fullpage #agenda .centerAbsolute .aGroup .aItem {
+
+.cg_fullpage .cg_agenda .centerAbsolute .aGroup .aItem {
   border-radius: 10px;
 }
-#fullpage #agenda .centerAbsolute .aGroup .aItem .aPic {
+
+.cg_fullpage .cg_agenda .centerAbsolute .aGroup .aItem .aPic {
   width: 500px;
   height: auto;
 }
-#fullpage #agenda .centerAbsolute .aGroup:nth-child(odd) {
+
+.cg_fullpage .cg_agenda .centerAbsolute .aGroup:nth-child(odd) {
   margin: 0 0 20px 20px;
 }
-#fullpage #news .centerAbsolute {
+
+.cg_fullpage .cg_news .centerAbsolute {
   width: 1200px;
 }
-#fullpage #news .centerAbsolute .nWrap {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap {
   max-height: 558px;
   overflow: auto;
 }
-#fullpage #news .centerAbsolute .nWrap .nItem {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap .nItem {
   width: 538px;
   height: 170px;
   margin: 0 0 24px 0;
@@ -242,15 +271,18 @@
   -webkit-transition: background-color 0.25s;
   transition: background-color 0.25s;
 }
-#fullpage #news .centerAbsolute .nWrap .nItem .mainImg {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap .nItem .mainImg {
   width: 165px;
   height: auto;
   vertical-align: top;
 }
-#fullpage #news .centerAbsolute .nWrap .nItem .words {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap .nItem .words {
   width: 309px;
 }
-#fullpage #news .centerAbsolute .nWrap .nItem .words .title {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap .nItem .words .title {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -261,7 +293,8 @@
   line-height: 22px;
   font-weight: 700;
 }
-#fullpage #news .centerAbsolute .nWrap .nItem .words .desc {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap .nItem .words .desc {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -271,53 +304,66 @@
   line-height: 20px;
   color: lightgray;
 }
-#fullpage #news .centerAbsolute .nWrap .nItem:nth-child(even) {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap .nItem:nth-child(even) {
   margin: 0 0 0 30px;
 }
-#fullpage #news .centerAbsolute .nWrap .nItem:hover {
+
+.cg_fullpage .cg_news .centerAbsolute .nWrap .nItem:hover {
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
-#fullpage #registration .centerAbsolute {
+
+.cg_fullpage .cg_registration .centerAbsolute {
   width: 1200px;
 }
-#fullpage #registration .centerAbsolute .rCBg {
+
+.cg_fullpage .cg_registration .centerAbsolute .rCBg {
   width: 480px;
   height: auto;
   margin: 0 0 33px 0;
 }
-#fullpage #registration .centerAbsolute .rCBg:nth-child(odd) {
+
+.cg_fullpage .cg_registration .centerAbsolute .rCBg:nth-child(odd) {
   margin: 0 0 33px 32px;
 }
-#fullpage #partners .centerAbsolute {
+
+.cg_fullpage .cg_partners .centerAbsolute {
   width: 1200px;
 }
-#fullpage #partners .centerAbsolute .pWrap {
+
+.cg_fullpage .cg_partners .centerAbsolute .pWrap {
   max-height: 550px;
   overflow: auto;
 }
-#fullpage #partners .centerAbsolute .pWrap .pGroup {
+
+.cg_fullpage .cg_partners .centerAbsolute .pWrap .pGroup {
   margin: 0 0 20px 0;
 }
-#fullpage #partners .centerAbsolute .pWrap .pGroup .pTitle {
+
+.cg_fullpage .cg_partners .centerAbsolute .pWrap .pGroup .pTitle {
   margin: 0 0 25px 0;
   font-size: 18px;
 }
-#fullpage #partners .centerAbsolute .pWrap .pGroup .pContent .pItem {
+
+.cg_fullpage .cg_partners .centerAbsolute .pWrap .pGroup .pContent .pItem {
   width: 175px;
   height: 70px;
   margin: 10px;
 }
-#fullpage #contact .centerAbsolute {
+
+.cg_fullpage .cg_contact .centerAbsolute {
   width: 1200px;
 }
-#fullpage #contact .centerAbsolute .cGroup .cItem {
+
+.cg_fullpage .cg_contact .centerAbsolute .cGroup .cItem {
   width: 350px;
   height: 200px;
   margin: 12px;
   transition: background-color 0.25s;
 }
-#fullpage #contact .centerAbsolute .cGroup .cItem:hover {
+
+.cg_fullpage .cg_contact .centerAbsolute .cGroup .cItem:hover {
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }

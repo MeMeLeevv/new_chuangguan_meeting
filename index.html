@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./css/pcPage/tool/jquery.mCustomScrollbar.min.css" />
   </head>
   <body>
-    <div id="header">
+    <div id="cg_header" class="cg_header">
       <span class="logo"></span>
       <span class="navbarwrap">
         <ul class="navbar">
@@ -30,7 +30,44 @@
         ><!-- 注意保底措施，加载图片失败则color补充 -->
       </span>
     </div>
-    <div id="fullpage" class="fullpage">
+    <div id="cg_fullpage" class="cg_fullpage">
+      <!-- <div
+        class="section centerRelative cg_contact"
+        data-cid=""
+        data-type=""
+        title="联系我们 —— title文字/titleBg、内容图"
+      >
+        <div class="centerAbsolute">
+          <div class="cTitle">联系我们</div>
+            <img
+              src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+              alt=""
+              class="cTitleBg"
+            />
+          <div class="cGroup">
+            <img
+            class="cItem cBg"
+            src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+            alt=""
+          />
+          <img
+            class="cItem cBg"
+            src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+            alt=""
+          />
+          <img
+            class="cItem cBg"
+            src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+            alt=""
+          />
+          <img
+            class="cItem cBg"
+            src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
+            alt=""
+          />
+          </div>
+        </div>
+      </div> -->
       <!-- 
       1  headImage
       2  background
@@ -51,15 +88,14 @@
       1、每屏背景——有则加载，没有则默认全局背景
         type=0 主视觉
       -->
-      <div
-        class="section centerRelative"
-        id="contact"
+      <!-- <div
+        class="section centerRelative cg_contact"
         data-cid=""
         data-type=""
         title="联系我们 —— title文字/titleBg、内容图"
       >
         <div class="centerAbsolute">
-          <!-- <div class="cTitle">联系我们</div> -->
+          <div class="cTitle">联系我们</div>
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
@@ -90,14 +126,13 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="partners"
+        class="section centerRelative cg_partners"
         data-cid=""
         data-type=""
         title="合作伙伴 —— title文字/titleBg、group（组标题、内容图片）"
       >
         <div class="centerAbsolute">
-          <!-- <div class="cTitle paddingMore">合作伙伴</div> -->
+          <div class="cTitle paddingMore">合作伙伴</div>
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
@@ -148,21 +183,20 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="guests"
+        class="section centerRelative cg_guests"
         data-cid=""
         data-type=""
         title="大会嘉宾 —— title文字/titleBg、group（name、desc、mainImg、hbgColor）"
       >
         <div class="centerAbsolute">
           <div class="cTitle">大会嘉宾</div>
-          <!-- <div class="cTitleBg textCenter">
+           <div class="cTitleBg textCenter">
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
+          </div>
           <div class="gContent">
             <div class="csslider">
               <input type="radio" name="slides" id="slides_1" checked />
@@ -369,21 +403,20 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="registration"
+        class="section centerRelative cg_registration"
         data-cid=""
         data-type=""
         title="参会报名 —— title文字/titleBg、内容图"
       >
         <div class="centerAbsolute">
           <div class="cTitle">参会报名</div>
-          <!-- <div class="cTitleBg textCenter">
+          <div class="cTitleBg textCenter">
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
+          </div>
           <a
             href="https://next.modao.cc/app/1d163cacb1a72532e44164bb2cba2f4f?tdsourcetag=s_pcqq_aiomsg#screen=s11A03F82231565084164139"
             target="_blank"
@@ -417,21 +450,20 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="news"
+        class="section centerRelative cg_news"
         data-cid=""
         data-type=""
         title="大会资讯 —— title文字/titleBg、group（背景图、主图片、标题、desc）"
       >
         <div class="centerAbsolute">
           <div class="cTitle">大会资讯</div>
-          <!--  <div class="textCenter">
+          <div class="textCenter">
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
+          </div>
           <div class="nWrap mCustomScrollbar">
             <span class="nItem">
               <img
@@ -635,21 +667,20 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="agenda"
+        class="section centerRelative cg_agenda"
         data-cid=""
         data-type=""
         title="大会议程 —— 由一堆图片以及链接组成"
       >
         <div class="centerAbsolute">
           <div class="cTitle">大会议程</div>
-          <!-- <div class="cTitleBg textCenter">
+          <div class="cTitleBg textCenter">
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
+          </div>
           <span class="aGroup">
             <a
               class="aItem shadow"
@@ -701,8 +732,7 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="headImage"
+        class="section centerRelative cg_headImage"
         data-cid="112"
         data-type="1"
         title="主视觉 —— 只有一张栏目背景图"
@@ -723,7 +753,7 @@
         title="大会背景 —— title文字/titleBg、栏目descrition文字"
       >
         <div class="centerAbsolute">
-          <!-- <div class="cTitle">大会背景</div> -->
+          <div class="cTitle">大会背景</div>
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
@@ -748,21 +778,20 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="highlight"
+        class="section centerRelative cg_highlight"
         data-cid=""
         data-type=""
         title="大会亮点 —— title文字/titleBg、分组（title、titleBg、desc、groupBg）"
       >
         <div class="centerAbsolute">
           <div class="cTitle">大会亮点</div>
-          <!-- <div class="textCenter">
+          <div class="textCenter">
             <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
             />
-          </div> -->
+          </div>
           <div class="hLContent">
             <div class="hLGroup">
               <div class="wrap">
@@ -808,33 +837,33 @@
         </div>
       </div>
       <div
-        class="section centerRelative"
-        id="scale"
+        class="section centerRelative cg_scale"
         data-cid=""
         data-type=""
         title="大会规模 —— title文字/titleBg、栏目背景图"
       >
         <div class="centerAbsolute">
           <div class="cTitle">大会规模</div>
-            <!-- <img
+            <img
               src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
               alt=""
               class="cTitleBg"
-            /> -->
+            />
           <img
             class="cBg shadow"
             src="http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f"
             alt=""
           />
         </div>
-      </div>
+      </div> -->
     </div>
     <script src="js/pcPage/tool/jquery-3.4.1.min.js"></script>
+    <script src="js/pcPage/common.js"></script>
     <script src="js/pcPage/projectMsg.js"></script>
     <!-- <script src="js/pcPage/header.js"></script> -->
+    <script src="js/pcPage/fullpageSection.js"></script>
     <script src="js/pcPage/tool/fullpage.js"></script>
     <script src="js/pcPage/tool/fullpage.extensions.min.js"></script>
-    <!-- <script src="js/pcPage/fullpageSection.js"></script> -->
     <script src="js/pcPage/tool/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- 大会咨询插件： http://www.jq22.com/yanshi21621 -->
