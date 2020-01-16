@@ -2,7 +2,6 @@
 (function ($, win, doc) {
     // 全局共享数据
     win.p_id = 16 // 大会ID
-
     var cg_pro = {
         data: {
             logo_img: '', // 大会logo图
@@ -27,7 +26,7 @@
          */
         getProjectMsg: function (p_id) {
             cg.request('/front/project/getBaseProjectByPid', {
-                p_id: p_id,
+                p_id
             }, function (data) {
                 var result = data.data;
                 if (data.code == 1) {
@@ -36,7 +35,7 @@
                     project_base_msg = result
                     // 加载完大会信息之后才开始加载header和fullpage配置
                     $('body').append('<script src="js/pcPage/header.js"><\/script>');
-                    console.log(result, 'getproject')
+                    // console.log(result, 'getproject')
                 }
             });
         }

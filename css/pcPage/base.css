@@ -5,7 +5,9 @@
   box-sizing: border-box;
 }
 
-span, a, img {
+span,
+a,
+img {
   display: inline-block;
 }
 
@@ -16,6 +18,12 @@ ul {
 a {
   color: white;
   text-decoration: none;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=base.css.map */
