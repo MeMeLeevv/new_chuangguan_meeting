@@ -28,13 +28,13 @@
             cg.request('/front/project/getBaseProjectByPid', {
                 p_id
             }, function (data) {
-                var result = data.data;
+                var result = data.data
                 if (data.code == 1) {
                     // 保存大会项目信息
                     // project.data = result
                     project_base_msg = result
                     // 加载完大会信息之后才开始加载header和fullpage配置
-                    $('body').append('<script src="js/pcPage/header.js"><\/script>');
+                    $('body').append('<script src="js/pcPage/header.js"><\/script>')
                     // console.log(result, 'getproject')
                 }
             });

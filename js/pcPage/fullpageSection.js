@@ -30,7 +30,7 @@
         10: 'cg_parnerOrMedia',
         11: 'cg_parnerOrMedia',
         12: 'cg_excellenceAwardOrAddress',
-        13: 'cg_agendaOrContactOrRegis'
+        13: 'cg_contact'
       },
     },
     init: function (params) {
@@ -67,7 +67,7 @@
             </div>`
           }
           // 将新的Dom元素插入到文档中
-          fullpageWrap.html(sec_frag)
+          // fullpageWrap.html(sec_frag)
 
           // 初始化fullpage插件
           $(cg_sec.data.fullpageSelector).fullpage({
@@ -79,6 +79,7 @@
             navigationPosition: 'left', // 定义导航栏显示的位置
             navigationTooltips: cg_sec.data.navigationTooltips, //（默认为[]）定义要使用导航圈的工具提示。 如果您愿意，也可以在每个部分中使用属性data-tooltip来定义它们
             paddingTop: cg_sec.data.headerHeight, //与顶部的距离
+            lazyLoading: true,
             /* onLeave: function (origin, destination, direction) { // 一旦用户离开 section ，过渡到新 section ，就会触发此回调。 返回 “false” 将在移动发生之前取消移动。
               var leavingSection = this;
 
@@ -94,7 +95,7 @@
           //console.log(fullpage_api.getActiveSection(), 'activeSection') // 当前激活的page信息
           fullpage_api.silentMoveTo(6, 0)
           // 拉取到栏目列表后初始化所有栏目内容
-          cg_sec.initAllSection()
+          // cg_sec.initAllSection()
         }
       });
     },
@@ -113,21 +114,24 @@
         let c_id = item.dataset.c_id
         switch (type) {
           case '1':
-          case '2': 
+          case '2':
           case '5':
-          case '12':{
+          case '12': { // 只需请求栏目
             if (type == '1') { // 大会头图
               cg_sec.createHeadImage($(this), index)
             } else if (type == '2') { // 大会背景
               cg_sec.createBackground($(this), index)
-            }else if (type == '5' || type == '12') { // 卓越成就奖或活动地址
-              cg_sec.createExcelAOrAddr($(this), index)
+            } else if (type == '5' || type == '12') { // 卓越成就奖或活动地址
+              cg_sec.createExcelAOrAddr($(this), index, type)
             }
             break
           }
           case '3':
           case '6':
-          case '8': {
+          case '8':
+          case '7':
+          case '9':
+          case '13': { // 只需请求栏目及一组栏目内容组数据
             let $this = $(this) // 保存最外层的dom元素
             if (type == '3') { // 大会亮点,要再拉一组栏目内容数据
               cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
@@ -170,7 +174,6 @@
                 }
               });
             } else if (type == '8') { // 大会资讯,要再拉一组栏目内容数据
-              console.log('888')
               cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
                 c_id
               }, function (data) {
@@ -190,7 +193,68 @@
                   });
                 }
               });
+            } else if (type == '7' || type == '9' || type == '13') { // 大会议程、参会报名和联系我们
+              cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
+                c_id
+              }, function (data) {
+                let result = data.data;
+                if (data.code == 1) {
+                  // 获取内容组的group_id
+                  let group_id = result[0].group_id
+                  cg.request('/front/columnObj/getColumnObjList', { //获取栏目内容
+                    group_id
+                  }, function (data) {
+                    let result = data.data;
+                    if (data.code == 1) {
+                      // 获取内容组的group_id
+                      console.log(result, 'result')
+                      cg_sec.createAgendaOrContactOrRegis($this, index, result, type)
+                    }
+                  });
+                }
+              });
             }
+            break;
+          }
+          case '10':
+          case '11': { // 需要请求栏目信息以及多层栏目内容组,合作伙伴和媒体
+            let $this = $(this) // 保存最外层的dom元素
+            cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
+              c_id
+            }, function (data) {
+              let result = data.data;
+              if (data.code == 1) {
+                let pGroup = ''
+                let promiseArr = []
+                for (let i = 0; i < result.length; i++) {
+                  // 获取内容组的group_id
+                  let group_id = result[i].group_id
+                  let gTitle = result[i].name
+                  let promiseItem = new Promise((resolve, reject) => {
+                    cg.request('/front/columnObj/getColumnObjList', { //获取栏目内容
+                      group_id
+                    }, function (data) {
+                      resolve(data)
+                    })
+                  }).then(data => {
+                    let result = data.data;
+                    if (data.code == 1) {
+                      // 获取内容组的group_id
+                      console.log(result, 'result')
+                      pGroup += `<div class="pGroup">
+                        <div class="pTitle">
+                        ${gTitle}</div>${cg_sec.createMulPartnersG($this, index, result, pGroup)}</div>`
+                    }
+                  }).catch(err => {
+                    throw new Error('partners or media has an error' + err)
+                  })
+                  promiseArr.push(promiseItem)
+                }
+                Promise.all(promiseArr).then(res => {
+                  cg_sec.createMulPartnersW($this, index, pGroup)
+                })
+              }
+            })
             break;
           }
           default: {
@@ -198,6 +262,34 @@
           }
         }
       })
+    },
+    /* 
+    创建合作伙伴或者合作媒体Wrap
+    @return null
+    */
+    createMulPartnersW: function ($dom, index, innerG) {
+      let title = cg_sec.data.secsMsg[index].title
+      let titleImg = cg_sec.data.secsMsg[index].title_img || cg_sec.data.defaultImg
+      let innerHtml = `${title ? `<div class='cTitle'>${title}</div>` : `<img src=${titleImg} alt='' class='cTitleBg' />`}
+    <div class="pWrap mCustomScrollbar">${innerG}</div>`
+      $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
+    },
+    /* 
+    创建合作伙伴或者合作媒体
+    @return null
+    */
+    createMulPartnersG: function ($dom, index, resultArr, pGroup) {
+      let hLGroup = ''
+      for (let i = 0; i < resultArr.length; i++) {
+        let itemBg = resultArr[i].background_img || cg_sec.data.defaultImg
+        hLGroup += `
+      <img src=${itemBg} class="pItem"></img>`
+      }
+      let hLContent = `
+    <div class="pContent">
+      ${hLGroup}
+    </div>`
+      return hLContent
     },
     /* 
     创建大会头图 直接覆盖section的背景
@@ -226,14 +318,29 @@
       $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
     },
     /* 创建卓越成就奖或大会地址 */
-    createExcelAOrAddr ($dom, index) {
+    createExcelAOrAddr($dom, index, type) {
       let title = cg_sec.data.secsMsg[index].title
       let titleImg = cg_sec.data.secsMsg[index].title_img || cg_sec.data.defaultImg
       let cbg = cg_sec.data.secsMsg[index].background_img
-
-      let innerHtml = `
+      let ahref = cg_sec.data.secsMsg[index].jump_url
+      let innerHtml = ''
+      if (type == '5') {
+        innerHtml = `
       ${title ? `<div class='cTitle'>${title}</div>` : `<img src=${titleImg} alt='' class='cTitleBg' />`}
-      <img class="cBg shadow" src=${cbg} alt="" />`
+      <a
+        target="_blank"
+        href=${ahref}
+      >
+        <img class="cBg shadow" src=${cbg} alt="" />
+      </a>
+      `
+      } else if (type == '12') {
+        innerHtml = `
+        ${title ? `<div class='cTitle'>${title}</div>` : `<img src=${titleImg} alt='' class='cTitleBg' />`}
+        <img class="cBg shadow" src=${cbg} alt="" />
+        `
+      }
+
       $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
     },
     /* 创建大会亮点 */
@@ -261,7 +368,8 @@
       <div class="hLContent">
         ${hLGroup}
       </div>`
-      innerHtml += hLContent
+      let scrollWrap = `<div class="nWrap mCustomScrollbar">${hLContent}</div>`
+      innerHtml += scrollWrap
       $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
     },
     /* 创建大会嘉宾，swiper插件以n个数据为一组 */
@@ -347,7 +455,6 @@
     },
     /* 创建大会资讯，scroll插件*/
     createNews: function ($dom, index, resultArr) {
-      let num = 10
       let title = cg_sec.data.secsMsg[index].title
       let titleImg = cg_sec.data.secsMsg[index].title_img || cg_sec.data.defaultImg
       let innerHtml = `${title ? `<div class='cTitle'>${title}</div>` : `<img src=${titleImg} alt='' class='cTitleBg' />`}` // 布置title
@@ -355,24 +462,74 @@
       let nWrap = ''
       for (let i = 0; i < resultArr.length; i++) {
         nItemWrap += `
-        <span class="nItem" style="background: url(${resultArr[i].background_img}) no-repeat;background-size: cover;">
-            <img
-              class="mainImg"
-              src=${resultArr[i].main_img}
-              alt=""
-            />
-            <span class="words">
-              <div class="title">
-                ${resultArr[i].title}
-              </div>
-              <div class="desc">
-                ${resultArr[i].content}
-              </div>
+        <a
+          target="_blank"
+          href=${resultArr[i].url}
+        >
+          <span class="nItem" style="background: url(${resultArr[i].background_img}) no-repeat;background-size: cover;">
+              <img
+                class="mainImg"
+                src=${resultArr[i].main_img}
+                alt=""
+              />
+              <span class="words">
+                <div class="title">
+                  ${resultArr[i].title}
+                </div>
+                <div class="desc">
+                  ${resultArr[i].content}
+                </div>
+              </span>
             </span>
-          </span>`
+          </a>`
       }
-      nWrap = `<div class="nWrap mCustomScrollbar">$${nItemWrap}</div>`
+      nWrap = `<div class="nWrap mCustomScrollbar">${nItemWrap}</div>`
       innerHtml += nWrap
+      $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
+
+    },
+    createAgendaOrContactOrRegis: function ($dom, index, resultArr, type) {
+      let title = cg_sec.data.secsMsg[index].title
+      let titleImg = cg_sec.data.secsMsg[index].title_img || cg_sec.data.defaultImg
+      let innerHtml = `${title ? `<div class='cTitle'>${title}</div>` : `<img src=${titleImg} alt='' class='cTitleBg' />`}` // 布置title
+      let aGroupWrap = ''
+      let cGroupWrap = ''
+      let cGroup = ''
+      if (type == '7' || type == '9') { // 大会议程、参会报名
+        for (let i = 0; i < resultArr.length; i++) {
+          aGroupWrap += `
+          <span class="aGroup">
+            <a
+              class="aItem shadow"
+              target="_blank"
+              href=${resultArr[i].url}
+            >
+              <img
+                class="aPic"
+                src=${resultArr[i].main_img}
+                alt=""
+            /></a>
+          </span>
+          `
+        }
+        let scrollWrap = `<div class="nWrap mCustomScrollbar">${aGroupWrap}</div>`
+        innerHtml += scrollWrap
+
+      } else if (type == '13') { // 联系我们
+        for (let i = 0; i < resultArr.length; i++) {
+          cGroup += `
+          <img
+            class="cItem cBg"
+            src=${resultArr[i].main_img}
+            alt=""
+          />
+          `
+        }
+        cGroupWrap = `<div class="cGroup">${cGroup}</div>`
+        let scrollWrap = `<div class="nWrap mCustomScrollbar">${cGroupWrap}</div>`
+
+        innerHtml += scrollWrap
+      }
       $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
 
     },

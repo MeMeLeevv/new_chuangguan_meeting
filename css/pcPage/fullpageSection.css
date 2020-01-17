@@ -66,26 +66,30 @@
   padding: 0 50px;
 }
 
-.cg_fullpage .cg_highlight .centerAbsolute .hLContent {
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap {
+  max-height: 600px;
+}
+
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap .hLContent {
   font-size: 0;
 }
 
-.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup {
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap .hLContent .hLGroup {
   display: inline-block;
-  width: 538px;
+  width: 520px;
   margin: 23px 0;
   vertical-align: middle;
   background-size: cover;
 }
 
-.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap {
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap .hLContent .hLGroup .wrap {
   position: relative;
   padding: 32px;
   -webkit-transition: background-color 0.25s;
   transition: background-color 0.25s;
 }
 
-.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap .gTitle {
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap .hLContent .hLGroup .wrap .gTitle {
   position: absolute;
   top: -20px;
   left: 10px;
@@ -98,7 +102,7 @@
   background-size: cover;
 }
 
-.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap .desc {
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap .hLContent .hLGroup .wrap .desc {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -108,13 +112,13 @@
   letter-spacing: 1px;
 }
 
-.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup .wrap:hover {
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap .hLContent .hLGroup .wrap:hover {
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
-.cg_fullpage .cg_highlight .centerAbsolute .hLContent .hLGroup:nth-child(even) {
-  margin: 0 0 0 22px;
+.cg_fullpage .cg_highlight .centerAbsolute .nWrap .hLContent .hLGroup:nth-child(even) {
+  margin: 0 0 0 20px;
 }
 
 .cg_fullpage .cg_guests .centerAbsolute .csslider > ul {
@@ -238,27 +242,31 @@
   background: #e86feb;
 }
 
-.cg_fullpage .cg_agenda .centerAbsolute {
+.cg_fullpage .cg_agendaOrContactOrRegis .centerAbsolute {
   width: 1100px;
   font-size: 0;
 }
 
-.cg_fullpage .cg_agenda .centerAbsolute .aGroup {
+.cg_fullpage .cg_agendaOrContactOrRegis .centerAbsolute .nWrap {
+  max-height: 600px;
+}
+
+.cg_fullpage .cg_agendaOrContactOrRegis .centerAbsolute .nWrap .aGroup {
   display: inline-block;
   margin: 0 0 20px 0;
   vertical-align: middle;
 }
 
-.cg_fullpage .cg_agenda .centerAbsolute .aGroup .aItem {
+.cg_fullpage .cg_agendaOrContactOrRegis .centerAbsolute .nWrap .aGroup .aItem {
   border-radius: 10px;
 }
 
-.cg_fullpage .cg_agenda .centerAbsolute .aGroup .aItem .aPic {
+.cg_fullpage .cg_agendaOrContactOrRegis .centerAbsolute .nWrap .aGroup .aItem .aPic {
   width: 500px;
   height: auto;
 }
 
-.cg_fullpage .cg_agenda .centerAbsolute .aGroup:nth-child(odd) {
+.cg_fullpage .cg_agendaOrContactOrRegis .centerAbsolute .nWrap .aGroup:nth-child(even) {
   margin: 0 0 20px 20px;
 }
 
@@ -267,7 +275,7 @@
 }
 
 .cg_fullpage .cg_news .centerAbsolute .nWrap {
-  max-height: 558px;
+  max-height: 600px;
   overflow: auto;
 }
 
@@ -323,39 +331,25 @@
   cursor: pointer;
 }
 
-.cg_fullpage .cg_registration .centerAbsolute {
+.cg_fullpage .cg_parnerOrMedia .centerAbsolute {
   width: 1200px;
 }
 
-.cg_fullpage .cg_registration .centerAbsolute .rCBg {
-  width: 480px;
-  height: auto;
-  margin: 0 0 33px 0;
-}
-
-.cg_fullpage .cg_registration .centerAbsolute .rCBg:nth-child(odd) {
-  margin: 0 0 33px 32px;
-}
-
-.cg_fullpage .cg_partners .centerAbsolute {
-  width: 1200px;
-}
-
-.cg_fullpage .cg_partners .centerAbsolute .pWrap {
-  max-height: 550px;
+.cg_fullpage .cg_parnerOrMedia .centerAbsolute .pWrap {
+  max-height: 600px;
   overflow: auto;
 }
 
-.cg_fullpage .cg_partners .centerAbsolute .pWrap .pGroup {
+.cg_fullpage .cg_parnerOrMedia .centerAbsolute .pWrap .pGroup {
   margin: 0 0 20px 0;
 }
 
-.cg_fullpage .cg_partners .centerAbsolute .pWrap .pGroup .pTitle {
+.cg_fullpage .cg_parnerOrMedia .centerAbsolute .pWrap .pGroup .pTitle {
   margin: 0 0 25px 0;
   font-size: 18px;
 }
 
-.cg_fullpage .cg_partners .centerAbsolute .pWrap .pGroup .pContent .pItem {
+.cg_fullpage .cg_parnerOrMedia .centerAbsolute .pWrap .pGroup .pContent .pItem {
   width: 175px;
   height: 70px;
   margin: 10px;
@@ -365,14 +359,18 @@
   width: 1200px;
 }
 
-.cg_fullpage .cg_contact .centerAbsolute .cGroup .cItem {
+.cg_fullpage .cg_contact .centerAbsolute .nWrap {
+  max-height: 600px;
+}
+
+.cg_fullpage .cg_contact .centerAbsolute .nWrap .cGroup .cItem {
   width: 350px;
   height: 200px;
   margin: 12px;
   transition: background-color 0.25s;
 }
 
-.cg_fullpage .cg_contact .centerAbsolute .cGroup .cItem:hover {
+.cg_fullpage .cg_contact .centerAbsolute .nWrap .cGroup .cItem:hover {
   background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
@@ -382,7 +380,55 @@
 }
 
 .cg_fullpage .cg_excellenceAwardOrAddress .centerAbsolute .cBg {
-  max-height: 500px;
+  max-height: 600px;
+}
+
+.cg_fullpage .cg_scale .centerAbsolute {
+  width: 1200px;
+  padding: 0 50px;
+}
+
+.cg_fullpage .cg_scale .centerAbsolute .gContent .nWrap {
+  max-height: 600px;
+}
+
+.cg_fullpage .cg_scale .centerAbsolute .gContent .nWrap .hLContent {
+  font-size: 0;
+}
+
+.cg_fullpage .cg_scale .centerAbsolute .gContent .nWrap .hLContent .hLGroup {
+  display: inline-block;
+  width: 520px;
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+  vertical-align: middle;
+  background-size: cover;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.cg_fullpage .cg_scale .centerAbsolute .gContent .nWrap .hLContent .hLGroup .wrap {
+  position: relative;
+  -webkit-transition: background-color 0.25s;
+  padding: 5px;
+  transition: background-color 0.25s;
+  background: url(http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f) no-repeat;
+  background-size: cover;
+}
+
+.cg_fullpage .cg_scale .centerAbsolute .gContent .nWrap .hLContent .hLGroup .wrap .desc {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  width: 70%;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.cg_fullpage .cg_scale .centerAbsolute .gContent .nWrap .hLContent .hLGroup:nth-child(even) {
+  margin: 0 0 0 20px;
 }
 
 /*# sourceMappingURL=fullpageSection.css.map */
