@@ -16,14 +16,14 @@ ul {
 }
 
 a {
-  color: white;
   text-decoration: none;
+  color: white;
 }
 
 .ellipsis {
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=base.css.map */

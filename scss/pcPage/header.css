@@ -3,15 +3,15 @@
 }
 .cg_header {
   position: fixed;
-  padding: 0 120px;
-  width: 100vw;
-  height: 76px;
-  background: #17000c 100%;
-  color: #fff;
-  z-index: 1000;
   top: 0;
   left: 0;
+  z-index: 1000;
+  width: 100vw;
   min-width: 1350px;
+  height: 76px;
+  padding: 0 120px;
+  color: #fff;
+  background: #17000c 100%;
 }
 .cg_header .logo {
   width: 243px;
@@ -30,19 +30,19 @@
 }
 .cg_header .navbarwrap .navbar li {
   display: inline-block;
-  margin: 0 20px;
   height: 35px;
+  margin: 0 20px;
+  border-bottom: 2px solid transparent;
   line-height: 35px;
   -webkit-transition: border-bottom 0.25s;
   transition: border-bottom 0.25s;
-  border-bottom: 2px solid transparent;
 }
 .cg_header .navbarwrap .navbar li a {
   height: 35px;
 }
 .cg_header .navbarwrap .navbar li:hover {
-  cursor: pointer;
   border-bottom: 2px solid #fff;
+  cursor: pointer;
 }
 .cg_header .navbarwrap .RegistrationBtn:hover {
   cursor: pointer;

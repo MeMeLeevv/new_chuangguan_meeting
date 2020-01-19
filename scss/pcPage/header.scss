@@ -1,23 +1,73 @@
 /* cg_header变量集合 */
-$cg_headerMinWidth:1350px; $cg_headerBg:#17000c 100%; $cg_headerHeight:76px; $title-font:normal 24px/1.5 'Open Sans', sans-serif; $fontColor:white; $fontSmallSize:18px; $fontMediumSize:22px; $fontBigSize:34px; $logoWidth:243px; $logoHeight:40px; $regisBtnWidth:100px; $regisBtnHeight:40px; $navbarHeight:35px;
+$cg_headerMinWidth:1350px;
+$cg_headerBg:#17000c 100%;
+$cg_headerHeight:76px;
+$title-font:normal 24px/1.5 'Open Sans', sans-serif;
+$fontColor:white;
+$fontSmallSize:18px;
+$fontMediumSize:22px;
+$fontBigSize:34px;
+$logoWidth:243px;
+$logoHeight:40px;
+$regisBtnWidth:100px;
+$regisBtnHeight:40px;
+$navbarHeight:35px;
 /* 激活状态下的navbar里item的样式 */
-.cg_header .navbarwrap .navbar .activeNavbar { border-bottom:2px solid $fontColor;
+.cg_header .navbarwrap .navbar .activeNavbar {
+  border-bottom:2px solid $fontColor;
 }
-.cg_header { position:fixed;  padding:0 120px; width:100vw; height:$cg_headerHeight; background:$cg_headerBg;color:$fontColor; z-index:1000; top:0; left:0; min-width:$cg_headerMinWidth;
-    .logo { width:$logoWidth; height:$logoHeight; background-repeat: no-repeat; background-size:cover;-webkit-transform:translateY(50%);transform:translateY(50%);
+.cg_header {
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+  width:100vw;
+  min-width:$cg_headerMinWidth;
+  height:$cg_headerHeight;
+  padding:0 120px;
+  color:$fontColor;
+  background:$cg_headerBg;
+  .logo {
+    width:$logoWidth;
+    height:$logoHeight;
+    background-repeat:no-repeat;
+    background-size:cover;
+    -webkit-transform:translateY(50%);
+            transform:translateY(50%);
+  }
+  .navbarwrap {
+    float:right;
+    .navbar {
+      display:inline-block;
+      line-height:$cg_headerHeight;
+      li {
+        display:inline-block;
+        height:$navbarHeight;
+        margin:0 20px;
+        border-bottom:2px solid transparent;
+        line-height:$navbarHeight;
+        -webkit-transition:border-bottom 0.25s;
+                transition:border-bottom 0.25s;
+        a {
+          height:$navbarHeight;
+        }
+      }
+      li:hover {
+        border-bottom:2px solid $fontColor;
+        cursor:pointer;
+      }
     }
-    .navbarwrap { float:right;
-        .navbar { display:inline-block;  line-height:$cg_headerHeight;
-            li { display:inline-block; margin:0 20px;  height:$navbarHeight;  line-height:$navbarHeight;  -webkit-transition:border-bottom .25s;  transition:border-bottom .25s; border-bottom:2px solid transparent;
-                a { height:$navbarHeight;
-                }
-            }
-            li:hover { cursor:pointer;  border-bottom:2px solid $fontColor;
-            }
-        }
-        .RegistrationBtn:hover { cursor:pointer;
-        }
-        .RegistrationBtn { width:$regisBtnWidth; height:$regisBtnHeight;line-height:$regisBtnHeight;  text-align:center;background-repeat: no-repeat;background-size:cover;border-radius:5px;
-        }
+    .RegistrationBtn:hover {
+      cursor:pointer;
     }
+    .RegistrationBtn {
+      width:$regisBtnWidth;
+      height:$regisBtnHeight;
+      line-height:$regisBtnHeight;
+      text-align:center;
+      background-repeat:no-repeat;
+      background-size:cover;
+      border-radius:5px;
+    }
+  }
 }

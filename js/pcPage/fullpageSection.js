@@ -12,6 +12,10 @@
       secClass: '.section',
       sectionSonClass: 'div.fp-tableCell', // 每个section类的直接子元素，由于我们有header，pullpage考虑header的高度便在初始化的时候在section类下加上了这个元素
       absoluteClass: '.centerAbsolute', // 动态插入栏目内容的父元素
+
+      scaleWidthClass: '.cg_scale .hLContent .percentBar',
+      scaleNumClass: '.cg_scale .hLContent .num',
+      scalePerNum: [], // 保存大会规模的百分比
       defaultImg: 'http://img.iimedia.cn/00001228e00fdffb513251e96027c50ff3fd18040576eed1660299eeb278938ef42d8', // 默认图片
       secsMsg: [], // 每个栏目信息
       navigationTooltips: [], // fullpage小圆点hover的时候可以给提示
@@ -54,23 +58,30 @@
           var fullpageWrap = $(cg_sec.data.fullpageSelector)
           var sec_frag = ''
 
-          console.log(result[7], 'section');
+          console.log(result, 'section');
           // 根据列表item个数创建pullPage页数以及每页的框架
           for (let i = 0; i < result.length; i++) {
             let data = result[i]
             // 保存栏目信息
             cg_sec.data.secsMsg.push(result[i])
             // 每页fullpage框架
-            sec_frag += `<div class="section centerRelative ${cg_sec.data.typeMap[data.type]}"
+            if (data.type == 6) { // 大会嘉宾不需要centerRelative类
+              sec_frag += `<div class="section ${cg_sec.data.typeMap[data.type]}"
             data-c_id="${data.c_id}" data-type="${data.type}" data-tooltip="${data.name}">
               <div class="centerAbsolute"></div>
             </div>`
+            } else {
+              sec_frag += `<div class="section centerRelative ${cg_sec.data.typeMap[data.type]}"
+            data-c_id="${data.c_id}" data-type="${data.type}" data-tooltip="${data.name}">
+              <div class="centerAbsolute"></div>
+            </div>`
+            }
           }
           // 将新的Dom元素插入到文档中
-          // fullpageWrap.html(sec_frag)
+          fullpageWrap.html(sec_frag)
 
           // 初始化fullpage插件
-          $(cg_sec.data.fullpageSelector).fullpage({
+          fullpageWrap.fullpage({
             //options here
             scrollingSpeed: 700, //滚动速度，单位为毫秒
             autoScrolling: true, //是否使用插件的滚动方式，如果选择 false，则会出现浏览器自带的滚动条
@@ -80,22 +91,35 @@
             navigationTooltips: cg_sec.data.navigationTooltips, //（默认为[]）定义要使用导航圈的工具提示。 如果您愿意，也可以在每个部分中使用属性data-tooltip来定义它们
             paddingTop: cg_sec.data.headerHeight, //与顶部的距离
             lazyLoading: true,
-            /* onLeave: function (origin, destination, direction) { // 一旦用户离开 section ，过渡到新 section ，就会触发此回调。 返回 “false” 将在移动发生之前取消移动。
-              var leavingSection = this;
-
-              //离开第二个section后
-              if (origin.index == 1 && direction == 'down') {
-                alert("前往第3个section！");
-              } else if (origin.index == 1 && direction == 'up') {
-                alert("前往第1个section！");
+            //events
+            onLeave: function (origin, destination, direction) {
+              if (origin.index == 4) {
+                for (let i = 0; i < cg_sec.data.scalePerNum.length; i++) {
+                  document.querySelectorAll(cg_sec.data.scaleWidthClass)[i].style.width = '0%'
+                  document.querySelectorAll(cg_sec.data.scaleNumClass)[i].innerHTML = '0%'
+                  }
               }
-              console.log(destination, 'destination') // 下一页的page信息
-            } */
+            },
+            afterLoad: function (origin, destination, direction) {
+              if (destination.index == 4) {
+                for (let i = 0; i < cg_sec.data.scalePerNum.length; i++) {
+                document.querySelectorAll(cg_sec.data.scaleWidthClass)[i].style.width = `${cg_sec.data.scalePerNum[i] - -30}%`
+                cg_sec.countUp(document.querySelectorAll(cg_sec.data.scaleNumClass)[i],0 ,cg_sec.data.scalePerNum[i]-0, 2, 50)
+                }
+              }
+            },
+            afterRender: function () {},
+            afterResize: function (width, height) {},
+            afterReBuild: function () {},
+            afterResponsive: function (isResponsive) {},
+            afterSlideLoad: function (section, origin, destination, direction) {},
+            onSlideLeave: function (section, origin, destination, direction) {
+            }
           });
           //console.log(fullpage_api.getActiveSection(), 'activeSection') // 当前激活的page信息
-          fullpage_api.silentMoveTo(6, 0)
+           ///fullpage_api.silentMoveTo(7, 0)
           // 拉取到栏目列表后初始化所有栏目内容
-          // cg_sec.initAllSection()
+          cg_sec.initAllSection()
         }
       });
     },
@@ -109,7 +133,6 @@
 
       // 循环每个section框架，通过c_id来拉取数据、type来选择布局样式
       sectionHtmls.each(function (index, item) {
-        console.log(item.dataset.type, 'sectionHtmls')
         let type = item.dataset.type
         let c_id = item.dataset.c_id
         switch (type) {
@@ -127,93 +150,41 @@
             break
           }
           case '3':
+          case '4':
           case '6':
           case '8':
           case '7':
           case '9':
           case '13': { // 只需请求栏目及一组栏目内容组数据
             let $this = $(this) // 保存最外层的dom元素
-            if (type == '3') { // 大会亮点,要再拉一组栏目内容数据
-              cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
-                c_id
-              }, function (data) {
-                let result = data.data;
-                if (data.code == 1) {
-                  // 获取内容组的group_id
-                  let group_id = result[0].group_id
-                  cg.request('/front/columnObj/getColumnObjList', { //获取栏目内容
-                    group_id
-                  }, function (data) {
-                    let result = data.data;
-                    if (data.code == 1) {
-                      // 获取内容组的group_id
-                      console.log(result, 'result')
+            cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
+              c_id
+            }, function (data) {
+              let result = data.data;
+              if (data.code == 1) {
+                // 获取内容组的group_id
+                let group_id = result[0].group_id
+                cg.request('/front/columnObj/getColumnObjList', { //获取栏目内容
+                  group_id
+                }, function (data) {
+                  let result = data.data;
+                  if (data.code == 1) {
+                    // 获取内容组的group_id
+                    if (type == '3') {
                       cg_sec.createHighlight($this, index, result)
-                    }
-                  });
-                }
-              });
-            } else if (type == '6') { // 大会嘉宾,要再拉一组栏目内容数据
-              cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
-                c_id
-              }, function (data) {
-                let result = data.data;
-                if (data.code == 1) {
-                  // 获取内容组的group_id
-                  let group_id = result[0].group_id
-                  cg.request('/front/columnObj/getColumnObjList', { //获取栏目内容
-                    group_id
-                  }, function (data) {
-                    let result = data.data;
-                    if (data.code == 1) {
-                      // 获取内容组的group_id
-                      console.log(result, 'result')
+                    } else if (type == '4') {
+                      cg_sec.createScale($this, index, result)
+                    } else if (type == '6') {
                       cg_sec.createGuests($this, index, result)
-                    }
-                  });
-                }
-              });
-            } else if (type == '8') { // 大会资讯,要再拉一组栏目内容数据
-              cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
-                c_id
-              }, function (data) {
-                let result = data.data;
-                if (data.code == 1) {
-                  // 获取内容组的group_id
-                  let group_id = result[0].group_id
-                  cg.request('/front/columnObj/getColumnObjList', { //获取栏目内容
-                    group_id
-                  }, function (data) {
-                    let result = data.data;
-                    if (data.code == 1) {
-                      // 获取内容组的group_id
-                      console.log(result, 'result')
+                    } else if (type == '8') {
                       cg_sec.createNews($this, index, result)
-                    }
-                  });
-                }
-              });
-            } else if (type == '7' || type == '9' || type == '13') { // 大会议程、参会报名和联系我们
-              cg.request('/front/columnObjgroup/getColumnObjGroupList', { //获取第一组栏目内容组
-                c_id
-              }, function (data) {
-                let result = data.data;
-                if (data.code == 1) {
-                  // 获取内容组的group_id
-                  let group_id = result[0].group_id
-                  cg.request('/front/columnObj/getColumnObjList', { //获取栏目内容
-                    group_id
-                  }, function (data) {
-                    let result = data.data;
-                    if (data.code == 1) {
-                      // 获取内容组的group_id
-                      console.log(result, 'result')
+                    } else if (type == '7' || type == '9' || type == '13') {
                       cg_sec.createAgendaOrContactOrRegis($this, index, result, type)
                     }
-                  });
-                }
-              });
-            }
+                  }
+                });
+              }
+            });
             break;
           }
           case '10':
@@ -240,7 +211,6 @@
                     let result = data.data;
                     if (data.code == 1) {
                       // 获取内容组的group_id
-                      console.log(result, 'result')
                       pGroup += `<div class="pGroup">
                         <div class="pTitle">
                         ${gTitle}</div>${cg_sec.createMulPartnersG($this, index, result, pGroup)}</div>`
@@ -263,6 +233,22 @@
         }
       })
     },
+    /* 
+    数字渐增
+    @return null
+    */
+   countUp: function (dom, start, aim, dur, interval) {
+    let ins = setInterval(() => {
+      if (start >= aim) {
+        dom.innerHTML = `${aim}%`
+        clearInterval(ins)
+        return
+      } else {
+        start += dur
+        dom.innerHTML = `${start}%`
+      }
+    }, interval);
+  },
     /* 
     创建合作伙伴或者合作媒体Wrap
     @return null
@@ -309,8 +295,7 @@
     createBackground: function ($dom, index) {
       let title = cg_sec.data.secsMsg[index].title
       let titleImg = cg_sec.data.secsMsg[index].title_img || cg_sec.data.defaultImg
-      let desc_content = cg_sec.data.secsMsg[index].desc_content
-
+      let desc_content = cg_sec.data.secsMsg[index].desc_content.replace(/\n|\r\n/g, "<br/>").replace(/\s/g, "&nbsp");
       let innerHtml = `
       ${title ? `<div class='cTitle'>${title}</div>` : `<img src=${titleImg} alt='' class='cTitleBg' />`}
         <div class="cDesc">${desc_content}</div>
@@ -495,8 +480,9 @@
       let aGroupWrap = ''
       let cGroupWrap = ''
       let cGroup = ''
+      let scrollWrap
       if (type == '7' || type == '9') { // 大会议程、参会报名
-        for (let i = 0; i < resultArr.length; i++) {
+        for (let i = 0; i < resultArr.length; i++) {  
           aGroupWrap += `
           <span class="aGroup">
             <a
@@ -512,7 +498,11 @@
           </span>
           `
         }
-        let scrollWrap = `<div class="nWrap mCustomScrollbar">${aGroupWrap}</div>`
+        if (type == '7') {
+          scrollWrap = `<div class="nWrap mCustomScrollbar">${aGroupWrap}</div>`
+        } else {
+          scrollWrap = `<div class="nWrap">${aGroupWrap}</div>`
+        }  
         innerHtml += scrollWrap
 
       } else if (type == '13') { // 联系我们
@@ -526,59 +516,54 @@
           `
         }
         cGroupWrap = `<div class="cGroup">${cGroup}</div>`
-        let scrollWrap = `<div class="nWrap mCustomScrollbar">${cGroupWrap}</div>`
+        let scrollWrap = `<div class="nWrap">${cGroupWrap}</div>`
 
         innerHtml += scrollWrap
       }
       $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
 
     },
-    createScale: function () {
-      let data = {
-        name: '大会规模',
-        cid: '123',
-        type: '4',
-        title: true,
-        imgSrc: 'http://img.iimedia.cn/0000117b83e66a86ad4b1d2c9d2984319f463b5f5d2e28075324f8aba0388fc65c95f'
+    createScale: function ($dom, index, resultArr) {
+      let title = cg_sec.data.secsMsg[index].title
+      let titleImg = cg_sec.data.secsMsg[index].title_img || cg_sec.data.defaultImg
+      let background_img = cg_sec.data.secsMsg[index].background_img
+      let innerHtml = `${title ? `<div class='cTitle'>${title}</div>` : `<img src=${titleImg} alt='' class='cTitleBg' />`}` // 布置title
+      let hLGroup = ''
+      for (let i = 0; i < resultArr.length; i++) {
+        let itenName = resultArr[i].name
+        let itemBg = resultArr[i].background_img || cg_sec.data.defaultImg
+        let itemPercent = resultArr[i].content
+        cg_sec.data.scalePerNum.push(itemPercent)
+        hLGroup += `
+        <div class="hLGroup">
+          <div class="inner">
+            <span class="barWrap">
+              <span class="percentBar" style="background: url(${itemBg}) no-repeat;background-size: cover;">
+                <span class="desc">
+                  ${itenName}
+                </span>
+              </span>
+            </span>
+            <span class="num">0%</span>
+          </div>
+        </div>`
       }
-      var fullpageWrap = document.querySelector(cg.data.fullpageSelector)
-      var fragment = document.createDocumentFragment()
-      //创建大会规模title
-      let title
-      if (data.title) { // 先判断title是图片还是文字
-        title = cg.createElement('div', [
-          ['className', 'cTitle']
-        ], null, data.name)
-      } else {
-        title = cg.createElement('img', [
-          ['src', data.imgSrc],
-          ['alt', '大会规模图片'],
-          ['className', 'cTitleBg']
-        ])
-      }
-      fragment.appendChild(title)
-      //创建大会规模内容图
-      let contentImg = cg.createElement('img', [
-        ['className', 'cBg shadow'],
-        ['src', data.imgSrc]
-      ])
-      fragment.appendChild(contentImg)
-      //创建承载大会规模content的主体
-      let content = cg.createElement('div', [
-        ['className', 'centerAbsolute']
-      ])
-      content.appendChild(fragment)
-      //创建大会头图框架
-      let scale = cg.createElement('div', [
-        ['className', 'section centerRelative cg_'],
-        ['title', '大会规模 —— title文字/titleBg、栏目背景图']
-      ], [
-        ["cid", '123'],
-        ['type', '4']
-      ])
-      scale.appendChild(content)
-      fullpageWrap.insertBefore(scale, fullpageWrap.firstChild)
-    },
+      let hLContent = `
+      <div class="hLContent">
+        ${hLGroup}
+      </div>`
+      let scrollWrap = `
+      <div class="gContent">
+        <img
+          class="s_tImg"
+          src=${background_img}
+          alt=""
+        />
+        <div class="nWrap mCustomScrollbar">${hLContent}</div>
+      </div>`
+      innerHtml += scrollWrap
+      $dom.find(cg_sec.data.absoluteClass).html(innerHtml)
+    }
   }
   $(function () {
 
