@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/MeMeLeevv/new_chuangguan_meeting#readme",
   "dependencies": {
-    "fullpage.js": "^3.0.8"
+    "fullpage.js": "^4.0.5"
   }
 }
